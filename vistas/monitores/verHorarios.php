@@ -1,18 +1,30 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+<?php
+include_once '../../includes/db_connect.php';
+include_once '../../includes/functions.php';
+ 
+sec_session_start();
+?>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>Inicio de sesión segura: Página protegida</title>
+        <link rel="stylesheet" href="../styles/main.css" />
+        <link rel="stylesheet" href="../styles/menu.css" />
+ 
     </head>
+    
     <body>
-        
-        <?php
-        // put your code here
-        ?>
+        <?php if (login_check($mysqli) == true) : ?>
+        <?php include './header.php';?>
+            
+           
+        <?php else : ?>
+            <p>
+                <span class="error">No está autorizado para acceder a esta página.</span> Please <a href="../index.php">login</a>.
+            </p>
+        <?php endif; ?>
+           
     </body>
 </html>

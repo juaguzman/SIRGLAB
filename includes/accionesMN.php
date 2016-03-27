@@ -18,10 +18,9 @@ class monitores
 static function ListarMonitores()
 {
     
-include 'db_connect.php';
-
-
-    $consulta= "SELECT * FROM monitores";
+        
+        include 'db_connect.php';
+        $consulta= "SELECT * FROM monitores";
         $result   = $mysqli->query($consulta);
         
         echo "<table border = '3' id=res > \n";
@@ -41,7 +40,7 @@ include 'db_connect.php';
                     $result2   = $mysqli->query($consulta);
                     
             echo "<tr id=resul><td>$campo->cedula</td><td>$campo->nombres</td><td>$campo->apellidos</td><td>$campo->celular</td><td>$campo->email</td><td>$campo->programa</td><td>$campo->semestre</td><td>$estado</td>"
-                    . "<td><a href=verHorarios.php><img src=../../imagenes/iconos/horario.png width=30px heigt=30px ></a></td>";
+                    . "<td><a href=verHorarios.ph?cedu=$campo->cedula><img src=../../imagenes/iconos/horario.png width=30px heigt=30px ></a></td>";
 
             
             
@@ -50,6 +49,16 @@ include 'db_connect.php';
       $mysqli->close();        
             
         } 
+        
+        
+  static function verHorarios($cedu)
+  {
+      
+        include 'db_connect.php';
+        $consulta= "SELECT dia, DATE_FORMAT(horaentra , '%T') as horaentra, DATE_FORMAT(horasale , '%T') as horasale FROM horarios WHERE monitores_cedula = $cedu";
+        $result   = $mysqli->query($consulta);
+      
+  }
         
 
 }

@@ -2,7 +2,7 @@
 <?php
 include_once '../../includes/db_connect.php';
 include_once '../../includes/functions.php';
-include_once '../../includes/acciones.php';
+include_once '../../includes/accionesMN.php';
  
 sec_session_start();
 ?>
