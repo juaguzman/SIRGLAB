@@ -14,6 +14,31 @@ and open the template in the editor.
     margin: 5% auto auto 40%;
 }
 
+#res
+{
+  border: 3px solid black;
+  width: 40%;
+  margin: 0px 0px 0px 0px;
+  padding: 6px 6px 4px 6px;
+  height: 40px;
+  line-height: 100%;
+  border-radius: 24px;
+  -webkit-border-radius: 24px;
+  -moz-border-radius: 24px;
+  box-shadow: 2px 2px 3px #666666;
+  -webkit-box-shadow: 2px 2px 3px #666666;
+  -moz-box-shadow: 2px 2px 3px #666666;
+  background: #A0BF30;
+  background: linear-gradient(top,  #A6C732,  #3CB329);
+  background: -ms-linear-gradient(top,  #A6C732,  #3CB329);
+  background: -webkit-gradient(linear, left top, left bottom, from(#A6C732), to(#3CB329));
+  background: -moz-linear-gradient(top,  #A6C732,  #3CB329);
+}
+
+#titu
+{
+    font-size: 25px;
+}
 /*
 Modificar de aki para abajo 
 */

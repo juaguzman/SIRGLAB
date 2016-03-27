@@ -23,9 +23,9 @@ static function ListarMonitores()
         $consulta= "SELECT * FROM monitores";
         $result   = $mysqli->query($consulta);
         
-        echo "<table border = '3' id=res > \n";
-        echo "<tr align =center> <th colspan=9>Lista Monitores</th> </tr>";
-        echo "<tr align=center id=tit><td >&nbsp;CEDULA&nbsp;</td><td>&nbsp;NOMBRES&nbsp;</td><td>&nbsp;APELLIDOS&nbsp;</td><td >&nbsp;CELULAR&nbsp;</td><td >&nbsp;EMAIL&nbsp;</td><td >&nbsp;PROGRAMA&nbsp;</td><td >&nbsp;SEMESTRE&nbsp;</td><td >&nbsp;ESTADO&nbsp;</td><td >&nbsp;OPCIONES&nbsp;</td></tr> \n";
+        echo "<table id=res > \n";
+        echo "<tr> <th colspan=9 id=titu >Lista Monitores</th> </tr>";
+        echo "<tr><td >&nbsp;CEDULA&nbsp;</td><td>&nbsp;NOMBRES&nbsp;</td><td>&nbsp;APELLIDOS&nbsp;</td><td >&nbsp;CELULAR&nbsp;</td><td >&nbsp;EMAIL&nbsp;</td><td >&nbsp;PROGRAMA&nbsp;</td><td >&nbsp;SEMESTRE&nbsp;</td><td >&nbsp;ESTADO&nbsp;</td><td >&nbsp;OPCIONES&nbsp;</td></tr> \n";
         while ($campo=mysqli_fetch_object($result)) 
                 {
                     if(strcmp($campo->estado, "fr")==0)
@@ -53,10 +53,11 @@ static function ListarMonitores()
         
   static function verHorarios($cedu)
   {
-      
+        
         include 'db_connect.php';
         $consulta= "SELECT dia, DATE_FORMAT(horaentra , '%T') as horaentra, DATE_FORMAT(horasale , '%T') as horasale FROM horarios WHERE monitores_cedula = $cedu";
         $result   = $mysqli->query($consulta);
+        
       
   }
         
