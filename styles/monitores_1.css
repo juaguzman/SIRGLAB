@@ -14,6 +14,12 @@ and open the template in the editor.
     margin: 5% auto auto 40%;
 }
 
+#mosmon
+{
+    width: 40%;
+    margin: 0 auto;
+}
+
 #res
 {
   border: 3px solid black;
@@ -38,6 +44,9 @@ and open the template in the editor.
 #titu
 {
     font-size: 25px;
+    align-content: center;
+    padding: 5px;
+    padding-bottom: 20px;
 }
 /*
 Modificar de aki para abajo 
