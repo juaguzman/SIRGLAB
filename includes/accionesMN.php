@@ -53,11 +53,25 @@ static function ListarMonitores()
         
   static function verHorarios($cedu)
   {
+      $h1="07:00:00";
+      $h2="08:00:00";
+      $h3="09:00:00";
+      $h4="010:00:00";
+      $h5="11:00:00";
+      $h6="12:00:00";
+      $h7="13:00:00";
+      $h8="14:00:00";
+      $h9="15:00:00";
+      $h10="16:00:00";
+      $h11="17:00:00";
+      $h12="18:00:00";
         
         include 'db_connect.php';
         $consulta= "SELECT dia, DATE_FORMAT(horaentra , '%T') as horaentra, DATE_FORMAT(horasale , '%T') as horasale FROM horarios WHERE monitores_cedula = $cedu";
         $result   = $mysqli->query($consulta);
         
+         echo "<table id=res > \n";
+          echo "<tr> <td colspan=9 id=titu >Horario de asistencia</td> </tr>";
       
   }
         
