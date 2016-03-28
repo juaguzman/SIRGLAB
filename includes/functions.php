@@ -51,11 +51,14 @@ function login($email, $password, $mysqli) {
             // Si el usuario existe, revisa si la cuenta está bloqueada
             // por muchos intentos de conexión.
  
-            if (checkbrute($user_id, $mysqli) == true) {
+            if (checkbrute($user_id, $mysqli) == true) 
+                    {
                 // La cuenta está bloqueada.
                 // Envía un correo electrónico al usuario que le informa que su cuenta está bloqueada.
                 return false;
-            } else {
+            } 
+            else 
+                {
                 // Revisa que la contraseña en la base de datos coincida 
                 // con la contraseña que el usuario envió.
                 if ($db_password == $password)

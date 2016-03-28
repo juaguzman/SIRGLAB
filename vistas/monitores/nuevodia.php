@@ -2,7 +2,7 @@
 <?php
 include_once '../../includes/db_connect.php';
 include_once '../../includes/functions.php';
-include_once '../../includes/procmonitores.inc.php';
+include_once '../../includes/inicioDmn.inc';
  
 sec_session_start();
 ?>
