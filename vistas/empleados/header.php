@@ -31,12 +31,17 @@ else
                     <li><a href="#">Services Sub Menu 1</a></li>
                 </ul>
             </li>
-            <li class="active" ><a>Monitores</a>
+            <li ><a>Monitores</a>
                <ul>
                     <li><a href="#">Empesar dia</a></li>
                     <li><a href="#">Terminar dia</a></li>
-                    <li><a href="listarmonitores.php">Ver monitores</a></li>
+                    <li><a href="../monitores/listarmonitores.php">Ver monitores</a></li>
                     <li><a href="#">Registro monitores</a></li>
+                </ul>
+            </li>
+            <li class="active"><a href="#">Empleados</a>
+                <ul>
+                    <li><a href="listarEmpleados.php">Ver Empleados</a></li>        
                 </ul>
             </li>
             <li><a href="#">Contact Us</a></li>
@@ -48,7 +53,7 @@ else
                      <?php if($_SESSION['rol']=='usua') {?>
                     <li> <a href="#">Perfil</a> </li> <?php } ?>
                      <?php if($_SESSION['rol']=='admin' or $_SESSION['rol']=='usua' ) {?>
-                    <li><a href="agregarMonit.php">Agregar Monitores</a></li> <?php } ?>
+                    <li><a href="../monitores/agregarMonit.php">Agregar Monitores</a></li> <?php } ?>
                     <li><a href="../../includes/logout.php">Salir</a></li>  
                 </ul>
             </li>
