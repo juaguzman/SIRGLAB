@@ -1,7 +1,7 @@
 <?php
 include_once '../../includes/db_connect.php';
 include_once '../../includes/functions.php';
-include_once '../../includes/accionesMN.php';
+include_once '../../includes/accionesEP.php';
  
 sec_session_start();
 ?>
@@ -21,7 +21,7 @@ sec_session_start();
         <?php if (login_check($mysqli) == true) : ?>
         <?php include './header.php';?>
             <p>¡Bienvenido, <?php echo htmlentities($_SESSION['username']); ?>!</p>
-            <div>
+            <div id="mosmon">
            <?php 
               
                 empleados::ListarEmpleados()?>

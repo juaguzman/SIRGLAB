@@ -36,9 +36,7 @@ static function ListarMonitores()
                     {
                        $estado = "Activo";
                     }
-                    $consulta2 = "SELECT horarios.* FROM monitores,horarios where monitores.cedula = horarios.monitores_cedula and horarios.monitores_cedula =$campo->cedula";
-                    $result2   = $mysqli->query($consulta);
-                    
+                                       
             echo "<tr id=resul><td>$campo->cedula</td><td>$campo->nombres</td><td>$campo->apellidos</td><td>$campo->celular</td><td>$campo->email</td><td>$campo->programa</td><td>$campo->semestre</td><td>$estado</td>"
                     . "<td><a href=verHorarios.ph?cedu=$campo->cedula><img src=../../imagenes/iconos/horario.png width=30px heigt=30px ></a></td>";
 

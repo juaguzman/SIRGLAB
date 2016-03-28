@@ -39,6 +39,11 @@ else
                     <li><a href="#">Registro monitores</a></li>
                 </ul>
             </li>
+            <li><a href="#">Empleados</a>
+                <ul>
+                    <li><a href="../empleados/listarEmpleados.php">Ver Empleados</a></li>        
+                </ul>
+            </li>
             <li><a href="#">Contact Us</a></li>
             <div id="nomses">
             <li id="nomses"><a href="#">¡Bienvenido, <?php if (isset($_GET['error'])){echo '<p class="error">Error Logging In!</p>';}else {echo htmlentities($_SESSION['username']);}?> !</a>
