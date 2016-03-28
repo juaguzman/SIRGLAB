@@ -84,6 +84,7 @@ if (isset($_POST['cedula'],$_POST['nombres'], $_POST['apellidos'], $_POST['celul
      {
        if ($insert_stmt = $mysqli->prepare("INSERT INTO monitores(cedula,nombres,apellidos,celular,email,programa,semestre,estado) values (?, ?, ?, ?, ?, ?, ?, ?)")) 
         {
+           $estd = "fr";
             $insert_stmt->bind_param('ssssssss', $cedu, $nom, $apell, $celu, $email, $prog, $semes, $estd);
             // Ejecuta la consulta preparada.
             if (! $insert_stmt->execute())
