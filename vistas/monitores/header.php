@@ -33,7 +33,7 @@ else
             </li>
             <li class="active" ><a>Monitores</a>
                <ul>
-                    <li><a href="#">Empesar dia</a></li>
+                   <li><a href="nuevodia.php">Empesar dia</a></li>
                     <li><a href="#">Terminar dia</a></li>
                     <li><a href="listarmonitores.php">Ver monitores</a></li>
                     <li><a href="#">Registro monitores</a></li>

@@ -68,7 +68,6 @@ static function ListarMonitores()
         include 'db_connect.php';
         $consulta= "SELECT dia, DATE_FORMAT(horaentra , '%T') as horaentra, DATE_FORMAT(horasale , '%T') as horasale FROM horarios WHERE monitores_cedula = $cedu";
         $result   = $mysqli->query($consulta);
-        echo "$result->num_rows";
          echo "<table id=res border= 3px solid  > \n";
          echo "<tr> <td colspan=9 id=titu >Horario de asistencia</td> </tr> "
          . "<tr><td>HORAS</td><td>LUNES</td><td>MARTES</td><td>MIERCOLES</td><td>JUEVES</td><td>VIERNES</td></tr>";

@@ -33,7 +33,7 @@ else
             </li>
             <li ><a>Monitores</a>
                <ul>
-                    <li><a href="#">Empesar dia</a></li>
+                   <li><a href="../monitores/nuevodia.php">Empesar dia</a></li>
                     <li><a href="#">Terminar dia</a></li>
                     <li><a href="../monitores/listarmonitores.php">Ver monitores</a></li>
                     <li><a href="#">Registro monitores</a></li>
@@ -50,8 +50,7 @@ else
                 <ul>
                      <?php if($_SESSION['rol']=='admin') {?>
                     <li> <a href="../register2.php">Agregar Laboratorista</a> </li> <?php } ?>
-                     <?php if($_SESSION['rol']=='usua') {?>
-                    <li> <a href="#">Perfil</a> </li> <?php } ?>
+                    <li> <a href="">Perfil</a> </li>
                      <?php if($_SESSION['rol']=='admin' or $_SESSION['rol']=='usua' ) {?>
                     <li><a href="../monitores/agregarMonit.php">Agregar Monitores</a></li> <?php } ?>
                     <li><a href="../../includes/logout.php">Salir</a></li>  
