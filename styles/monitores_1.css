@@ -24,9 +24,9 @@ and open the template in the editor.
 #res
 {
   border: 3px solid black;
-  width: 90%;
+  width: 120%;
   margin: 0px 0px 0px 0px;
-  padding: 6px 6px 4px 6px;
+  padding: 10px 10px 10px 10px;
   height: 40px;
   line-height: 100%;
   border-radius: 24px;
@@ -40,6 +40,11 @@ and open the template in the editor.
   background: -ms-linear-gradient(top,  #A6C732,  #3CB329);
   background: -webkit-gradient(linear, left top, left bottom, from(#A6C732), to(#3CB329));
   background: -moz-linear-gradient(top,  #A6C732,  #3CB329);
+  text-align: center;
+}
+td
+{
+    width: 100px;
 }
 
 #titu
