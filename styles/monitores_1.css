@@ -16,14 +16,15 @@ and open the template in the editor.
 
 #mosmon
 {
-    width: 40%;
+    width: 35%;
     margin: 0 auto;
 }
+
 
 #res
 {
   border: 3px solid black;
-  width: 40%;
+  width: 90%;
   margin: 0px 0px 0px 0px;
   padding: 6px 6px 4px 6px;
   height: 40px;
@@ -43,10 +44,18 @@ and open the template in the editor.
 
 #titu
 {
+    border: none;
     font-size: 25px;
+    text-align: center;
     align-content: center;
     padding: 5px;
     padding-bottom: 20px;
+}
+
+#ok
+{
+    background: #d3e2da;
+    border: 3px solid;
 }
 /*
 Modificar de aki para abajo 
