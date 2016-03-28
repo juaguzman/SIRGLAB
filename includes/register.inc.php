@@ -71,14 +71,14 @@ if (isset($_POST['cedu'],$_POST['username'], $_POST['email'], $_POST['p']))
                 {
                         // Ya existe otro usuario con este nombre de usuario.
                         $error_msg .= '<p class="error">Ya existe otro usuario con este nombre de usuario.</p>';
-                        $stmt->close();
+                        
                 }
-                $stmt->close();
+                
         } 
         else 
             {
                 $error_msg .= '<p class="error">Database error line 55</p>';
-                $stmt->close();
+               
             }
  
     // Pendiente: 

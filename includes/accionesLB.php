@@ -11,30 +11,38 @@ class laboratorista
 {
     static function ListarLaboratorista()
     {
+        if(isset($_REQUEST['id']))
+        {
+            $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
         include 'db_connect.php';
-        $consulta= "SELECT * FROM laboratoristas";
-        $result   = $mysqli->query($consulta);
+        $consulta= "SELECT * FROM laboratoristas WHERE id =$id" ;
         
-        echo "<table id=res > \n";
+        
+        
+        
+        if($result   = $mysqli->query($consulta))
+        {
+           
+            echo "<table id=res > \n";
         echo "<tr> <th colspan=9 id=titu >Lista de Laboratoristas</th> </tr>";
         echo "<tr><td >&nbsp;Numero&nbsp;</td><td>&nbsp;Cedula&nbsp;</td>"
                 . "<td>&nbsp;Nombres&nbsp;</td><td>&nbsp;Apellidos&nbsp;</td>"
                 . "<td>&nbsp;Celular&nbsp;</td><td>&nbsp;Direccion&nbsp;</td>"
                 . "<td >&nbsp;OPCIONES&nbsp;</td></tr> \n";
         
-        if($result->num_rows==0)
-        {
-            
-        }
-        else 
-        {
             while ($campo=mysqli_fetch_object($result)) 
             {
                 echo "<tr id=resul><td>$campo->idlaboratoristas</td><td>$campo->members_id</td><td>$campo->nombres</td><td>$campo->apellidos</td><td>$campo->celular</td><td>$campo->direccion</td>"
                     . "<td><img src=../../imagenes/iconos/horario.png width=30px heigt=30px ></td>";
-            }     
+            }  
+             echo "</table> \n";
+        $mysqli->close();
         }
-        echo "</table> \n";
-        $mysqli->close();  
+        else 
+        {
+           echo "no existe un perfil";   
+        }
+       
+        }
     }
 }

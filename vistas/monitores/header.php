@@ -1,8 +1,7 @@
 <?php
 include_once '../../includes/db_connect.php';
 include_once '../../includes/functions.php';
- 
- 
+  
 if (login_check($mysqli) == true) 
 {
     $logged = 'in';
@@ -50,7 +49,8 @@ else
                 <ul>
                      <?php if($_SESSION['rol']=='admin') {?>
                     <li> <a href="../register2.php">Agregar Laboratorista</a> </li> <?php } ?>
-                    <li> <a href="#">Perfil</a> </li>
+                     <?php $id= $_SESSION['user_id'];?>
+                    <li> <a href="../laboratorista/listarlaboratorista.php?id="<?php $_SESSION['username'];?>>Perfil</a> </li> 
                      <?php if($_SESSION['rol']=='admin' or $_SESSION['rol']=='usua' ) {?>
                     <li><a href="agregarMonit.php">Agregar Monitores</a></li> <?php } ?>
                     <li><a href="../../includes/logout.php">Salir</a></li>  
