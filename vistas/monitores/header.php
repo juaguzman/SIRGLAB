@@ -50,8 +50,7 @@ else
                 <ul>
                      <?php if($_SESSION['rol']=='admin') {?>
                     <li> <a href="../register2.php">Agregar Laboratorista</a> </li> <?php } ?>
-                     <?php if($_SESSION['rol']=='usua') {?>
-                    <li> <a href="#">Perfil</a> </li> <?php } ?>
+                    <li> <a href="#">Perfil</a> </li>
                      <?php if($_SESSION['rol']=='admin' or $_SESSION['rol']=='usua' ) {?>
                     <li><a href="agregarMonit.php">Agregar Monitores</a></li> <?php } ?>
                     <li><a href="../../includes/logout.php">Salir</a></li>  
