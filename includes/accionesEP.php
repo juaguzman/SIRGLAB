@@ -16,7 +16,7 @@ class empleados
         $result   = $mysqli->query($consulta);
         
         echo "<table id=res > \n";
-        echo "<tr> <th colspan=9 id=titu >Lista Monitores</th> </tr>";
+        echo "<tr> <th colspan=9 id=titu >Lista Empleados</th> </tr>";
         echo "<tr><td >&nbsp;Cedula&nbsp;</td><td>&nbsp;Codigo&nbsp;</td><td>&nbsp;Nombres&nbsp;</td><td >&nbsp;Apellidos&nbsp;</td><td >&nbsp;Dependeica&nbsp;</td><td >&nbsp;ESTADO&nbsp;</td><td >&nbsp;OPCIONES&nbsp;</td></tr> \n";
         while ($campo=mysqli_fetch_object($result)) 
         {

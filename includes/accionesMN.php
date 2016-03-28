@@ -48,7 +48,13 @@ static function ListarMonitores()
             
         } 
         
-        
+ static function asignarM()
+ {
+     
+ }
+
+
+ 
   static function verHorarios($cedu)
   {
       
