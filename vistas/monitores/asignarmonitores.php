@@ -1,17 +1,62 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+<?php
+include_once '../../includes/db_connect.php';
+include_once '../../includes/functions.php';
+include_once '../../includes/accionesMN.php';
+ 
+sec_session_start();
+?>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+            <title>Inicio de sesión segura: Página protegida</title>
+            <link rel="stylesheet" href="../../styles/main.css" />
+            <link rel="stylesheet" href="../../styles/menu.css" />
+            <link rel="stylesheet" href="../../styles/monitores_1.css" />
+<!--            <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />-->
+            <link rel="stylesheet" href="../../styles/jquery-ui.css" />
+            <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+            <script src="/resources/demos/external/jquery.bgiframe-2.1.2.js"></script>
+            <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="http://www.proyectosbds.com/html/css/layout.css" />
+         <script>
+ function abrir_dialog(idl,cedu) {
+      $( "#dialog" ).dialog(
+              {
+          modal: true,
+          buttons: {
+                "Sí": function() 
+                {
+                    $( this ).dialog( "close" );
+                   window.location.href = "../../includes/procesar_mn.php?req=asig&id="+idl+"&cedu="+cedu;
+                },
+                Cancel: function() {
+                    $( this ).dialog( "close" );
+                }
+            }
+      });
+    };
+    </script>
+        
+ 
     </head>
+    
     <body>
-        <?php
-        // put your code here
-        ?>
+        <?php if (login_check($mysqli) == true) : ?>
+        <?php include './header.php';?>
+            <p>¡Bienvenido, <?php echo htmlentities($_SESSION['username']); ?>!</p>
+            <div id="mosmon">
+           <?php 
+              $idl = $_SESSION['user_id'];
+               monitores::asignarM($idl)?>
+            </div> 
+            
+        <?php else : ?>
+            <p>
+                <span class="error">No está autorizado para acceder a esta página.</span> Please <a href="../index.php">login</a>.
+            </p>
+        <?php endif; ?>
+           
     </body>
 </html>

@@ -48,14 +48,49 @@ static function ListarMonitores()
             
         } 
         
- static function asignarM()
+ static function asignarM($idl)
  {
-     
+      include 'db_connect.php';
+        $consulta= "SELECT * FROM monitores Where laboratoristas_members_id is null";
+        $result   = $mysqli->query($consulta);
+        
+        echo "  <div id=dialog title=Asignar Monitor style=display:none;><p>Desea agregar el monitor sus monitores.</p></div>";
+        echo "<table id=res > \n";
+        echo "<tr> <th colspan=9 id=titu >Lista Monitores</th> </tr>";
+        echo "<tr><td >&nbsp;CEDULA&nbsp;</td><td>&nbsp;NOMBRES&nbsp;</td><td>&nbsp;APELLIDOS&nbsp;</td><td >&nbsp;CELULAR&nbsp;</td><td >&nbsp;EMAIL&nbsp;</td><td >&nbsp;PROGRAMA&nbsp;</td><td >&nbsp;SEMESTRE&nbsp;</td><td >&nbsp;OPCIONES&nbsp;</td></tr> \n";
+        while ($campo=mysqli_fetch_object($result)) 
+                {  
+            $cedu = $campo->cedula;
+            echo "<tr id=resul><td>$campo->cedula</td><td>$campo->nombres</td><td>$campo->apellidos</td><td>$campo->celular</td><td>$campo->email</td><td>$campo->programa</td><td>$campo->semestre</td>"
+                    . "<td><a href=# onclick=abrir_dialog($idl,$cedu)><img src=../../imagenes/iconos/horario.png width=30px heigt=30px ></a></td>";
+                }
+        echo "</table> \n";
+      $mysqli->close(); 
  }
 
+static function asigmonitores($idl,$cedu)
+{
+    include 'db_connect.php';
+    
+    $upd = "UPDATE monitores set laboratoristas_members_id = ? where cedula = ? ";
+                        
+                 if ($upd_stmt = $mysqli->prepare($upd)) 
+                 {
+                     
+                        $upd_stmt->bind_param('ss',$idl ,$cedu);
+                        // Ejecuta la consulta preparada.
+                        if (! $upd_stmt->execute())
+                        {
+                            header('Location: ../error.php?err=Registration failure: UPDATE');
+                        }
+                           
+                            header('Location: ../vistas/monitores/asignarmonitores.php');
+                   }
+    
+}
 
- 
-  static function verHorarios($cedu)
+
+static function verHorarios($cedu)
   {
       
       $h1="07:00:00";

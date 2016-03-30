@@ -36,7 +36,7 @@ else
                    <li><a href="../monitores/nuevodia.php">Empesar dia</a></li>
                     <li><a href="#">Terminar dia</a></li>
                     <li><a href="../monitores/listarmonitores.php">Ver monitores</a></li>
-                    <li><a href="#">Registro monitores</a></li>
+                    <li><a href="../monitores/asignarmonitores.php">Asignar Monitores</a></li>
                 </ul>
             </li>
             <li class="active"><a href="#">Empleados</a>

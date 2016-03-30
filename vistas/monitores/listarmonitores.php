@@ -22,7 +22,7 @@ sec_session_start();
         <?php if (login_check($mysqli) == true) : ?>
         <?php include './header.php';?>
             <p>¡Bienvenido, <?php echo htmlentities($_SESSION['username']); ?>!</p>
-            <div id="mosmon">
+            <div id="mosmon" >
            <?php 
               
                monitores::ListarMonitores()?>
