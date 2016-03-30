@@ -32,10 +32,10 @@ else
             </li>
             <li class="active" ><a>Monitores</a>
                <ul>
-                   <li><a href="nuevodia.php">Empesar dia</a></li>
-                    <li><a href="#">Terminar dia</a></li>
-                    <li><a href="listarmonitores.php">Ver monitores</a></li>
-                    <li><a href="#">Registro monitores</a></li>
+                   <li><a href="nuevodia.php">Empesar Dia</a></li>
+                    <li><a href="#">Terminar Dia</a></li>
+                    <li><a href="listarmonitores.php">Ver Monitores</a></li>
+                    <li><a href="#">Asignar Monitores</a></li>
                 </ul>
             </li>
             <li><a href="#">Empleados</a>
