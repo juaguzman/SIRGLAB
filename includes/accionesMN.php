@@ -54,7 +54,7 @@ static function ListarMonitores()
         $consulta= "SELECT * FROM monitores Where laboratoristas_members_id is null";
         $result   = $mysqli->query($consulta);
         
-        echo "  <div id=dialog title=Asignar Monitor style=display:none;><p>Desea agregar el monitor sus monitores.</p></div>";
+        
         echo "<table id=res > \n";
         echo "<tr> <th colspan=9 id=titu >Lista Monitores</th> </tr>";
         echo "<tr><td >&nbsp;CEDULA&nbsp;</td><td>&nbsp;NOMBRES&nbsp;</td><td>&nbsp;APELLIDOS&nbsp;</td><td >&nbsp;CELULAR&nbsp;</td><td >&nbsp;EMAIL&nbsp;</td><td >&nbsp;PROGRAMA&nbsp;</td><td >&nbsp;SEMESTRE&nbsp;</td><td >&nbsp;OPCIONES&nbsp;</td></tr> \n";
