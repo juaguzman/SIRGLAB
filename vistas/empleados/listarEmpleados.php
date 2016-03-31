@@ -28,7 +28,7 @@ sec_session_start();
             </div>    
         <?php else : ?>
             <p>
-                <span class="error">No está autorizado para acceder a esta página.</span> Please <a href="../index.php">login</a>.
+                <span class="error">No está autorizado para acceder a esta página.</span> Please <a href="../../index.php">login</a>.
             </p>
         <?php endif; ?>
            

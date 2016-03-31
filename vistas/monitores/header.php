@@ -49,7 +49,8 @@ else
                 <ul>
                      <?php if($_SESSION['rol']=='admin') {?>
                     <li> <a href="../register2.php">Agregar Laboratorista</a> </li> <?php } ?>
-                     <?php $id= $_SESSION['user_id'];?>
+                      <?php if($_SESSION['rol']=='admin' or $_SESSION['rol']=='admin' ) {?>
+                    <li> <a href=../laboratorista/datosLaboratorista.php>Perfil</a></li> <?php } ?> 
                     <li> <a href="../laboratorista/listarlaboratorista.php?id="<?php $_SESSION['username'];?>>Perfil</a> </li> 
                      <?php if($_SESSION['rol']=='admin' or $_SESSION['rol']=='usua' ) {?>
                     <li><a href="agregarMonit.php">Agregar Monitores</a></li> <?php } ?>
