@@ -25,11 +25,10 @@ sec_session_start();
 
         <div id="monadd">
             <form class="form-container" action="<?php echo esc_url($_SERVER['PHP_SELF']); ?>" method="POST">
-                <div class="form-title"><h2>Agregar Monitor</h2></div>
+                <div class="form-title"><h2>Agregar Monitor</h2></div><br/>
 <!--                <div><?php if (!empty($error_msg)) { echo $error_msg;} ?></div>-->
                 <div class="form-title">Cedula  <?php if (!empty($error_msg_cedu)) { echo $error_msg_cedu;} ?></div>
-                <input class="form-field" type="number" value="<?php if (!empty($cedu)) { echo $cedu;} ?>" name="cedula" maxlength="10" required />
-                <br />                
+                <input class="form-field" type="number" value="<?php if (!empty($cedu)) { echo $cedu;} ?>" name="cedula" maxlength="10" required />               
                 <div class="form-title">Nombres</div>
                 <input class="form-field" type="text" name="nombres" value="<?php if (!empty($nom)) { echo $nom;} ?>" maxlength="45" required /><br />
                 <div class="form-title">Apellidos</div>

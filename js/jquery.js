@@ -45,7 +45,8 @@
     }
 
     //when the dom has loaded setup form validation rules
-    $(D).ready(function($) {
+    $(D).ready(function($) 
+    {
         JQUERY4U.UTIL.setupFormValidation();
     });
 

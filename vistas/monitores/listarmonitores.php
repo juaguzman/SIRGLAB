@@ -6,7 +6,6 @@ include_once '../../includes/accionesMN.php';
  
 sec_session_start();
 ?>
-<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -14,6 +13,7 @@ sec_session_start();
         <link rel="stylesheet" href="../../styles/main.css" />
         <link rel="stylesheet" href="../../styles/menu.css" />
         <link rel="stylesheet" href="../../styles/tabla.css" />
+        <link rel="stylesheet" href="../../styles/monitores_1.css" />
         
  
     </head>

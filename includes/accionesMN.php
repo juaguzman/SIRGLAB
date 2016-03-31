@@ -53,13 +53,12 @@ static function ListarMonitores()
         $result   = $mysqli->query($consulta);
         
         
-        echo "<table id=res > \n";
-        echo "<tr> <th colspan=9 id=titu >Lista Monitores</th> </tr>";
+        echo "<table> \n";
         echo "<tr><td >&nbsp;CEDULA&nbsp;</td><td>&nbsp;NOMBRES&nbsp;</td><td>&nbsp;APELLIDOS&nbsp;</td><td >&nbsp;CELULAR&nbsp;</td><td >&nbsp;EMAIL&nbsp;</td><td >&nbsp;PROGRAMA&nbsp;</td><td >&nbsp;SEMESTRE&nbsp;</td><td >&nbsp;OPCIONES&nbsp;</td></tr> \n";
         while ($campo=mysqli_fetch_object($result)) 
                 {  
             $cedu = $campo->cedula;
-            echo "<tr id=resul><td>$campo->cedula</td><td>$campo->nombres</td><td>$campo->apellidos</td><td>$campo->celular</td><td>$campo->email</td><td>$campo->programa</td><td>$campo->semestre</td>"
+            echo "<tr><td>$campo->cedula</td><td>$campo->nombres</td><td>$campo->apellidos</td><td>$campo->celular</td><td>$campo->email</td><td>$campo->programa</td><td>$campo->semestre</td>"
                     . "<td><a href=# onclick=abrir_dialog($idl,$cedu)><img src=../../imagenes/iconos/horario.png width=30px heigt=30px ></a></td>";
                 }
         echo "</table> \n";
@@ -107,9 +106,8 @@ static function verHorarios($cedu)
         include 'db_connect.php';
         $consulta= "SELECT dia, DATE_FORMAT(horaentra , '%T') as horaentra, DATE_FORMAT(horasale , '%T') as horasale FROM horarios WHERE monitores_cedula = $cedu";
         $result   = $mysqli->query($consulta);
-         echo "<table id=res border= 3px solid  > \n";
-         echo "<tr> <td colspan=9 id=titu >Horario de asistencia</td> </tr> "
-         . "<tr><td>HORAS</td><td>LUNES</td><td>MARTES</td><td>MIERCOLES</td><td>JUEVES</td><td>VIERNES</td></tr>";
+         echo "<table> \n";
+         echo "<tr><td>HORAS</td><td>LUNES</td><td>MARTES</td><td>MIERCOLES</td><td>JUEVES</td><td>VIERNES</td></tr>";
       
          while ($campo=mysqli_fetch_object($result)) 
          {

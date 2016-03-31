@@ -14,12 +14,11 @@ sec_session_start();
             <link rel="stylesheet" href="../../styles/main.css" />
             <link rel="stylesheet" href="../../styles/menu.css" />
             <link rel="stylesheet" href="../../styles/monitores_1.css" />
-<!--            <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />-->
+            <link rel="stylesheet" href="../../styles/tabla.css" />
             <link rel="stylesheet" href="../../styles/jquery-ui.css" />
             <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
             <script src="/resources/demos/external/jquery.bgiframe-2.1.2.js"></script>
             <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
-    <link rel="stylesheet" href="http://www.proyectosbds.com/html/css/layout.css" />
          <script>
  function abrir_dialog(idl,cedu) {
       $( "#dialog" ).dialog(
@@ -46,7 +45,7 @@ sec_session_start();
         <?php if (login_check($mysqli) == true) : ?>
         <?php include './header.php';?>
             <p>¡Bienvenido, <?php echo htmlentities($_SESSION['username']); ?>!</p>
-            <div id="mosmon">
+            <div class="CSSTableGenerator">
                 
       <div id="dialog" title="Asignar monitor" style="display:none;"> <p>Desea asignar este monitor a sus monitores</p></div>
            <?php 

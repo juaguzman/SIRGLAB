@@ -12,6 +12,7 @@ sec_session_start();
         <title>Inicio de sesión segura: Página protegida</title>
         <link rel="stylesheet" href="../../styles/main.css" />
         <link rel="stylesheet" href="../../styles/menu.css" />
+        <link rel="stylesheet" href="../../styles/tabla.css" />
         <link rel="stylesheet" href="../../styles/monitores_1.css" />
         
  
@@ -21,7 +22,7 @@ sec_session_start();
         <?php if (login_check($mysqli) == true) : ?>
         <?php include './header.php';?>
             <p>¡Bienvenido, <?php echo htmlentities($_SESSION['username']); ?>!</p>
-            <div id="mosmon">
+            <div class="CSSTableGenerator">
            <?php 
               
                 empleados::ListarEmpleados()?>

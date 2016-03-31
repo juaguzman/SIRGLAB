@@ -12,6 +12,7 @@ and open the template in the editor.
 {
     position: relative;
     margin: 5% auto auto 40%;
+    width: 90%;
 }
 
 #mosmon
@@ -83,14 +84,14 @@ Modificar de aki para abajo
    -webkit-box-shadow: rgba(000,000,000,0.9) 0 1px 2px, inset rgba(255,255,255,0.4) 0 0px 0;
    -moz-box-shadow: rgba(000,000,000,0.9) 0 1px 2px, inset rgba(255,255,255,0.4) 0 0px 0;
    box-shadow: rgba(000,000,000,0.9) 0 1px 2px, inset rgba(255,255,255,0.4) 0 0px 0;
-   font-family: 'Helvetica Neue',Helvetica,sans-serif;
+   font-family: 'Arial',Helvetica,sans-serif;
    text-decoration: none;
-   vertical-align: middle;
    min-width:300px;
    padding:20px;
    width:300px;
    }
-.form-field {
+.form-field
+{
    border: 1px solid #7f89a3;
    background: #a8dbd8;
    -webkit-border-radius: 4px;
@@ -119,6 +120,7 @@ Modificar de aki para abajo
    margin-bottom:10px;
    color: #ffffff;
    text-shadow: #86b888 0 1px 0;
+   width: auto;
    }
 .submit-container {
    margin:8px 0;
