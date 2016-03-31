@@ -47,6 +47,8 @@ sec_session_start();
         <?php include './header.php';?>
             <p>¡Bienvenido, <?php echo htmlentities($_SESSION['username']); ?>!</p>
             <div id="mosmon">
+                
+      <div id="dialog" title="Asignar monitor" style="display:none;"> <p>Desea asignar este monitor a sus monitores</p></div>
            <?php 
               $idl = $_SESSION['user_id'];
                monitores::asignarM($idl)?>
