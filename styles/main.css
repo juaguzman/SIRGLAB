@@ -15,7 +15,8 @@ html
 
 .error 
 { 
-    color: red;
+    color: #ff3333;
+    text-shadow: #86b888 0 1px 0;
     height: 1px;
     margin-top: -2px;
 }

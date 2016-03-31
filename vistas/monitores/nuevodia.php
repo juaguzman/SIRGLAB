@@ -19,10 +19,16 @@ sec_session_start();
         <script src="/resources/demos/external/jquery.bgiframe-2.1.2.js"></script>
         <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
         <script>
-         $(function() 
-         {
-         $( "#dialog" ).dialog();
-         });
+        $(function() {
+    $( "#dialog-message" ).dialog({
+      modal: true,
+      buttons: {
+        Ok: function() {
+          $( this ).dialog( "close" );
+        }
+      }
+    });
+  });
   </script>
    
  

@@ -43,8 +43,8 @@ static function sallabor()
 static function salMon()
 {
      include 'db_connect.php';
-     echo "<select class=form-field  name=mon >";
-     echo "<option value=>Seleccione Monitor </option>";
+     echo "<select class=form-field  name=idmon >";
+     echo "<option>Seleccione Monitor </option>";
       $result = $mysqli->query("SELECT cedula, nombres FROM monitores ");
              if ($result->num_rows > 0) 
                {

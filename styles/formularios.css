@@ -90,6 +90,13 @@ Modificar de aki para abajo
    padding:15px;
    width:35%;
    }
+   
+   .form-container-tab
+   {
+   min-width:100%;
+   width:100%;
+   }
+   
 .form-field
 {
    border: 1px solid #7f89a3;

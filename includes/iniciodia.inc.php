@@ -99,7 +99,7 @@ if (isset($_POST['cedula'],$_POST['idlab']))
                             header('Location: ../error.php?err=Registration failure: UPDATE');
                         }
                            
-                        echo "<div id=dialog title=Fin Dia> <p>acaba de marcar su salida</p></div>";
+                        echo "<div id=dialog-message title=Fin Dia> <p>acaba de marcar su salida</p></div>";
                    }
                 }
             }
