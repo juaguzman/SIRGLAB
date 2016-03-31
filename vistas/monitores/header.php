@@ -22,7 +22,7 @@ else
             <li ><a href="../index.php">Inicio</a></li>
             <li><a href="#">Practicas</a>
                  <ul>
-                    <li><a href="#">Products Sub Menu 1</a></li>
+                     <li><a href="../formularios/practicas/agregarpractica.php">Agregar Practica</a></li>
                  </ul>
             </li>
             <li><a href="#">Investigacion</a>

@@ -35,7 +35,7 @@ sec_session_start();
 
         <div id="monadd">
             <form class="form-container" action="<?php echo esc_url($_SERVER['PHP_SELF']); ?>" method="POST">
-                <div class="form-title"><h2>Inicio Monitorias</h2></div>
+                <div class="form-title"><h2>Registrar Monitoria</h2></div>
                 <div class="form-title">Cedula  <?php if (!empty($error_msg)) { echo $error_msg;} ?></div>
                 <input class="form-field" type="number" value="" name="cedula" maxlength="10" required placeholder="Cedula"/>
                 <div class="submit-container">
