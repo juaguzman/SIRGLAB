@@ -13,7 +13,7 @@ sec_session_start();
         <title>Inicio de sesión segura: Página protegida</title>
         <link rel="stylesheet" href="../../styles/main.css" />
         <link rel="stylesheet" href="../../styles/menu.css" />
-        <link rel="stylesheet" href="../../styles/monitores_1.css" />
+        <link rel="stylesheet" href="../../styles/tabla.css" />
         
  
     </head>
@@ -22,12 +22,12 @@ sec_session_start();
         <?php if (login_check($mysqli) == true) : ?>
         <?php include './header.php';?>
             <p>¡Bienvenido, <?php echo htmlentities($_SESSION['username']); ?>!</p>
-            <div id="mosmon" >
+           
            <div id=dialog title=Asignar Monitor style=display:none;><p>Desea agregar el monitor sus monitores.</p></div>
-           <?php 
-              
+             <div class="CSSTableGenerator" > 
+           <?php             
                monitores::ListarMonitores()?>
-            </div>    
+            </div>  
         <?php else : ?>
             <p>
                 <span class="error">No está autorizado para acceder a esta página.</span> Please <a href="../index.php">login</a>.
