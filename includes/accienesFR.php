@@ -55,9 +55,39 @@ static function salMon()
                 }
     echo "</select>";
 }
+   
+static function listapracticaactiva($idlab)
+{
     
+//    include 'db_connect.php';
+//        $consulta= "SELECT practicas.* , laboratorios.nombre as 'labo', monitores.nombres as 'monit', programa.nombre as 'prog', materias.nombre as 'mater' FROM practicas,laboratorios, monitores,programa, materias WHERE practicas.laboratorios_idlaboratorios = laboratorios.idlaboratorios AND practicas.monitores_cedula = monitores.cedula AND programa.idprograma = practicas.programa_idprograma and practicas.materias_idmaterias = materias.idmaterias AND practicas.laboratoristas_members_id = 1 and practicas.estado = 'in';";
+//        $result   = $mysqli->query($consulta);
+//       echo "<table> \n";
+//     echo "<tr><td>&nbsp;CEDULA&nbsp;</td><td>&nbsp;NOMBRES&nbsp;</td><td>&nbsp;APELLIDOS&nbsp;</td><td >&nbsp;CELULAR&nbsp;</td><td >&nbsp;EMAIL&nbsp;</td><td >&nbsp;PROGRAMA&nbsp;</td><td >&nbsp;SEMESTRE&nbsp;</td><td >&nbsp;ESTADO&nbsp;</td><td >&nbsp;OPCIONES&nbsp;</td></tr> \n";
+//   while ($campo=mysqli_fetch_object($result)) 
+//            {
+//                                       
+//            echo "<tr><td>$campo->idpracticas</td><td>$campo->labo</td><td>$campo->monit</td><td>$campo->prog</td><td>$campo->mater</td><td>$campo->nombre_pract</td><td>$campo->docente</td><td>$campo->fecha</td><";
+//
+//    
+//            }
+//
+//            echo "</table>";
     
+    include 'db_connect.php';
+        $consulta= "SELECT practicas.* , laboratorios.nombre as 'labo', monitores.nombres as 'monit', programa.nombre as 'prog', materias.nombre as 'mater' FROM practicas,laboratorios, monitores,programa, materias WHERE practicas.laboratorios_idlaboratorios = laboratorios.idlaboratorios AND practicas.monitores_cedula = monitores.cedula AND programa.idprograma = practicas.programa_idprograma and practicas.materias_idmaterias = materias.idmaterias AND practicas.laboratoristas_members_id = 1 and practicas.estado = 'in';";
+        $result   = $mysqli->query($consulta);
+        
+        echo "<table> \n";
+        echo "<tr><td>&nbsp;NUM PRACTICA&nbsp;</td><td>&nbsp;LABORATORIO&nbsp;</td><td>&nbsp;MONITOR&nbsp;</td><td >&nbsp;PROGRAMA&nbsp;</td><td >&nbsp;MATERIA&nbsp;</td><td >&nbsp;PRACTICA&nbsp;</td><td >&nbsp;DOCENTE&nbsp;</td><td >&nbsp;FECHA&nbsp;</td><td >&nbsp;OPCIONES&nbsp;</td></tr> \n";
+        while ($campo=mysqli_fetch_object($result)) 
+                {                      
+                 echo "<tr><td>$campo->idpracticas</td><td>$campo->labo</td><td>$campo->monit</td><td>$campo->prog</td><td>$campo->mater</td><td>$campo->nombre_pract</td><td>$campo->docente</td><td>$campo->fecha</td><td><a href=verHorarios.php?cedu=$campo->idpracticas><img src=../../../imagenes/iconos/stop.png width=30px heigt=30px ></a></td>";
+                }
+        echo "</table> \n";
+      $mysqli->close();        
+            
     
-    
+}
 }
 
