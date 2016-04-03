@@ -24,6 +24,7 @@ else
                  <ul>
                     <li><a href="agregarpractica.php">Agregar Practica</a></li>
                      <li><a href="finpractica.php">Finalizar Practica</a></li>
+                      <li><a href="listarpracticascord.php">Ver Practicas</a></li>
                  </ul>
             </li>
             <li><a href="#">Investigacion</a>

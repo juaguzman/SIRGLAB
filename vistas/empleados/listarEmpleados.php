@@ -21,7 +21,6 @@ sec_session_start();
     <body>
         <?php if (login_check($mysqli) == true) : ?>
         <?php include './header.php';?>
-            <p>¡Bienvenido, <?php echo htmlentities($_SESSION['username']); ?>!</p>
             <div class="CSSTableGenerator">
            <?php 
               

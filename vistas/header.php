@@ -25,7 +25,8 @@ else
             <li><a href="#">Practicas</a>
                  <ul>
                    <li><a href="formularios/practicas/agregarpractica.php">Agregar Practica</a></li>
-                   <li><a href="../formularios/practicas/finpractica.php">Finalizar Practica</a></li>
+                   <li><a href="formularios/practicas/finpractica.php">Finalizar Practica</a></li>
+                   <li><a href="formularios/practicas/verpract.php">Ver Practicas</a></li>
                  </ul>
             </li>
             <li><a href="#">Investigacion</a>
@@ -48,15 +49,14 @@ else
             <li><a href="#">Contact Us</a></li>
             <div id="nomses">
             <li id="nomses"><a href="#">¡Bienvenido, <?php if (isset($_GET['error'])){echo '<p class="error">Error Logging In!</p>';}else {echo htmlentities($_SESSION['username']);}?> !</a>
-               <ul>
+                <ul>
                      <?php if($_SESSION['rol']=='admin') {?>
-                    <li> <a href="../register2.php">Agregar Laboratorista</a> </li> <?php } ?>
-                  <?php if($_SESSION['rol']=='admin' or $_SESSION['rol']=='admin' ) {?>
-                    <li> <a href=laboratorista/datosLaboratorista.php>Perfil</a></li> <?php } ?> 
+                    <li> <a href="register2.php">Agregar Laboratorista</a> </li> <?php } ?>
+                     <?php $id= $_SESSION['user_id'];?>
+                     <?php if($_SESSION['rol']=='admin' or $_SESSION['rol']=='admin' ) {?>
+                    <li> <a href="laboratorista/datosLaboratorista.php">Perfil</a></li> <?php } ?>  
                      <?php if($_SESSION['rol']=='admin' or $_SESSION['rol']=='usua' ) {?>
                     <li><a href="monitores/agregarMonit.php">Agregar Monitores</a></li> <?php } ?>
-                    <?php if($_SESSION['rol']=='admin' or $_SESSION['rol']=='admin' ) {?>
-                    <li><a href="#">Ver Monitores</a></li> <?php } ?>
                     <li><a href="../includes/logout.php">Salir</a></li>  
                 </ul>
             </li>

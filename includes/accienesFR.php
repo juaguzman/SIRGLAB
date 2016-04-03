@@ -74,9 +74,10 @@ static function listapracticaactiva($idlab)
 {
     
     include 'db_connect.php';
-        $consulta= "SELECT practicas.* , laboratorios.nombre as 'labo', monitores.nombres as 'monit', programa.nombre as 'prog', materias.nombre as 'mater' FROM practicas,laboratorios, monitores,programa, materias WHERE practicas.laboratorios_idlaboratorios = laboratorios.idlaboratorios AND practicas.monitores_cedula = monitores.cedula AND programa.idprograma = practicas.programa_idprograma and practicas.materias_idmaterias = materias.idmaterias AND practicas.laboratoristas_members_id = 1 and practicas.estado = 'in';";
+        $consulta= "SELECT practicas.* , laboratorios.nombre as 'labo', monitores.nombres as 'monit', programa.nombre as 'prog', materias.nombre as 'mater' FROM practicas,laboratorios, monitores,programa, materias WHERE practicas.laboratorios_idlaboratorios = laboratorios.idlaboratorios AND practicas.monitores_cedula = monitores.cedula AND programa.idprograma = practicas.programa_idprograma and practicas.materias_idmaterias = materias.idmaterias AND practicas.laboratoristas_members_id = $idlab and practicas.estado = 'in';";
         $result   = $mysqli->query($consulta);
-        
+        echo "<table> \n";
+        echo "<thead><tr><td colspan=10>Listado de practicas activas</td></tr></thead>";
         echo "<table> \n";
         echo "<tr><td>&nbsp;NUM PRACTICA&nbsp;</td><td>&nbsp;LABORATORIO&nbsp;</td><td>&nbsp;MONITOR&nbsp;</td><td >&nbsp;PROGRAMA&nbsp;</td><td >&nbsp;MATERIA&nbsp;</td><td >&nbsp;PRACTICA&nbsp;</td><td >&nbsp;DOCENTE&nbsp;</td><td >&nbsp;FECHA&nbsp;</td><td >&nbsp;OPCIONES&nbsp;</td></tr> \n";
         while ($campo=mysqli_fetch_object($result)) 
@@ -85,6 +86,29 @@ static function listapracticaactiva($idlab)
                 }
         echo "</table> \n";
       $mysqli->close();        
+            
+    
+}
+
+/*
+ * lista todas la practicas de un cordinador 
+ */
+static function listatodpractlab($idlab)
+{
+    
+     include 'db_connect.php';
+        $consulta= "SELECT practicas.* , laboratorios.nombre as 'labo', monitores.nombres as 'monit', programa.nombre as 'prog', materias.nombre as 'mater' FROM practicas,laboratorios, monitores,programa, materias WHERE practicas.laboratorios_idlaboratorios = laboratorios.idlaboratorios AND practicas.monitores_cedula = monitores.cedula AND programa.idprograma = practicas.programa_idprograma and practicas.materias_idmaterias = materias.idmaterias AND practicas.laboratoristas_members_id = $idlab ORDER BY laboratorios.nombre desc, practicas.numficha;";
+        $result   = $mysqli->query($consulta);
+        
+        echo "<table> \n";
+        echo "<thead><tr><td colspan=12>Listado de practicas</td></tr></thead>";
+        echo "<tr><td>&nbsp;NUM PRACTICA&nbsp;</td><td>&nbsp;LABORATORIO&nbsp;</td><td>NUM GUIA</td><td>&nbsp;MONITOR&nbsp;</td><td >&nbsp;PROGRAMA&nbsp;</td><td >&nbsp;MATERIA&nbsp;</td><td >&nbsp;PRACTICA&nbsp;</td><td >&nbsp;DOCENTE&nbsp;</td><td >&nbsp;FECHA&nbsp;</td><td >&nbsp;HORA INI&nbsp;</td><td >&nbsp;HORA FIN&nbsp;</td><td >&nbsp;OPCIONES&nbsp;</td></tr> \n";
+        while ($campo=mysqli_fetch_object($result)) 
+                {                      
+                 echo "<tr><td>$campo->idpracticas</td><td>$campo->labo</td><td>$campo->numficha</td><td>$campo->monit</td><td>$campo->prog</td><td>$campo->mater</td><td>$campo->nombre_pract</td><td>$campo->docente</td><td>$campo->fecha</td><td>$campo->horaini</td><td>$campo->horafin</td><td><a href=../../../includes/procesarFR.php?id=$campo->idpracticas&req=finp /><img src=../../../imagenes/iconos/ver.png width=30px heigt=30px ></a></td>";
+                }
+        echo "</table> \n";
+      $mysqli->close();              
             
     
 }

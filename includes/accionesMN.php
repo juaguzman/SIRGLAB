@@ -59,7 +59,7 @@ static function ListarMonitores()
                 {  
             $cedu = $campo->cedula;
             echo "<tr><td>$campo->cedula</td><td>$campo->nombres</td><td>$campo->apellidos</td><td>$campo->celular</td><td>$campo->email</td><td>$campo->programa</td><td>$campo->semestre</td>"
-                    . "<td><a href=# onclick=abrir_dialog($idl,$cedu)><img src=../../imagenes/iconos/horario.png width=30px heigt=30px ></a></td>";
+                    . "<td><a href=# onclick=abrir_dialog($idl,$cedu)><img src=../../imagenes/iconos/mas.png width=30px heigt=30px ></a></td>";
                 }
         echo "</table> \n";
       $mysqli->close(); 

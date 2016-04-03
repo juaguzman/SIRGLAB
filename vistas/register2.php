@@ -24,10 +24,9 @@ sec_session_start();
         <!-- Formulario de registro que se emitirá si las variables POST no se
           establecen o si la secuencia de comandos de registro ha provocado un error. -->
         <div id="registro" >
-        <h1>Regístro de laboratoristas</h1>
-       
+        <h1>Regístro de laboratoristas</h1>       
         <ul>
-            <li> <?php if (!empty($error_msg)) { echo $error_msg;} ?></li>
+            <?php if (!empty($error_msg)) { echo $error_msg;} ?>
             <li> Los nombres de usuario podrían contener solo dígitos, letras mayúsculas, minúsculas y guiones bajos.</li>
             <li> Los correos electrónicos deberán tener un formato válido. </li>
             <li> Las contraseñas deberán tener al menos 6 caracteres.</li>

@@ -116,7 +116,7 @@ if (isset($_POST['cedula'],$_POST['idlab']))
         }
         else
             {
-                $error_msg='<p class="error">El nuero de cedula no resgistra</p>';
+                $error_msg='<p class="error">El numero de cedula no esta registrado</p>';
             }
  
         }

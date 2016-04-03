@@ -24,6 +24,7 @@ else
                  <ul>
                      <li><a href="../formularios/practicas/agregarpractica.php">Agregar Practica</a></li>
                      <li><a href="../formularios/practicas/finpractica.php">Finalizar Practica</a></li>
+                     <li><a href="../formularios/practicas/listarpracticascord.php">ver Practicas</a></li>
                  </ul>
             </li>
             <li><a href="#">Investigacion</a>
@@ -51,7 +52,6 @@ else
                     <li> <a href="../register2.php">Agregar Laboratorista</a> </li> <?php } ?>
                       <?php if($_SESSION['rol']=='admin' or $_SESSION['rol']=='admin' ) {?>
                     <li> <a href=../laboratorista/datosLaboratorista.php>Perfil</a></li> <?php } ?> 
-                    <li> <a href="../laboratorista/listarlaboratorista.php?id="<?php $_SESSION['username'];?>>Perfil</a> </li> 
                      <?php if($_SESSION['rol']=='admin' or $_SESSION['rol']=='usua' ) {?>
                     <li><a href="agregarMonit.php">Agregar Monitores</a></li> <?php } ?>
                     <li><a href="../../includes/logout.php">Salir</a></li>  
