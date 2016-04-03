@@ -68,7 +68,8 @@ sec_session_start();
                        </td>
                         <td>
                 <div class="form-title">Monitor  <?php if (!empty($error_msg_mnt)) { echo $error_msg_mnt;} ?></div>  
-                 <?php formularios::salMon()?>
+                 <?php $id = $_SESSION['user_id'];
+                 formularios::salMon($id)?>
                         </td>
                  </tr>
                  <tr>
@@ -134,9 +135,7 @@ sec_session_start();
                 <tr>
                     <td colspan="2">
                        <div class="form-title">Observaciones Del Cordinador</div>  
-                       <textarea id="area" placeholder="Observaciones del cordinador de laboratorio" name="obscor">
-                           
-                       </textarea>
+                       <textarea id="area" placeholder="Observaciones del cordinador de laboratorio" name="obscor"></textarea>
                     </td>
                 </tr>
                 <tr>

@@ -1,8 +1,40 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+include_once './accienesFR.php';
 
+if(isset($_REQUEST['req']))
+{
+    $rq = $_REQUEST['req'];
+    switch ($rq)
+    {
+    case "finp":
+     if(isset($_REQUEST['id']))
+     {
+       $id = $_REQUEST['id'];
+       
+       header('Location: ../vistas/formularios/practicas/finprectobs.php?id='.$id);
+     }
+    break;
+    case "fin":
+         if(isset($_REQUEST['id']))
+     {
+       $id = $_REQUEST['id'];
+    
+     }
+     else
+     {
+         
+     }
+     if(isset($_REQUEST['obsercor']))
+     {
+       $obsercor = $_REQUEST['obsercor'];
+     } 
+     if(isset($_REQUEST['obserdos']))
+     {
+         $obserdos = $_REQUEST['obserdos'];
+     }
+     formularios::finpr($id,$obsercor,$obserdos);
+     
+    break;
+    }
+}

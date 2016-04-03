@@ -11,20 +11,17 @@ class laboratorista
 {
     static function ListarLaboratorista()
     {
-        if(isset($_REQUEST['id']))
-        {
-            $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
+        
+           
         include 'db_connect.php';
-        $consulta= "SELECT * FROM laboratoristas WHERE id =$id" ;
-        
-        
-        
-        
+        $consulta= "SELECT * FROM laboratoristas" ;        
         if($result   = $mysqli->query($consulta))
         {
            
-            echo "<table id=res > \n";
-        echo "<tr> <th colspan=9 id=titu >Lista de Laboratoristas</th> </tr>";
+        echo "<table> \n";
+        echo "<thead>";
+        echo "<tr><td colspan=9>Lista de Laboratoristas</td></tr>";
+        echo "<thead>";
         echo "<tr><td >&nbsp;Numero&nbsp;</td><td>&nbsp;Cedula&nbsp;</td>"
                 . "<td>&nbsp;Nombres&nbsp;</td><td>&nbsp;Apellidos&nbsp;</td>"
                 . "<td>&nbsp;Celular&nbsp;</td><td>&nbsp;Direccion&nbsp;</td>"
@@ -32,7 +29,7 @@ class laboratorista
         
             while ($campo=mysqli_fetch_object($result)) 
             {
-                echo "<tr id=resul><td>$campo->idlaboratoristas</td><td>$campo->members_id</td><td>$campo->nombres</td><td>$campo->apellidos</td><td>$campo->celular</td><td>$campo->direccion</td>"
+                echo "<tr><td>$campo->members_id</td><td>$campo->members_id</td><td>$campo->nombres</td><td>$campo->apellidos</td><td>$campo->celular</td><td>$campo->direccion</td>"
                     . "<td><img src=../../imagenes/iconos/horario.png width=30px heigt=30px ></td>";
             }  
              echo "</table> \n";
@@ -44,5 +41,5 @@ class laboratorista
         }
        
         }
-    }
+    
 }

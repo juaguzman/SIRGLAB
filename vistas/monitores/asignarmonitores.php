@@ -44,10 +44,8 @@ sec_session_start();
     <body>
         <?php if (login_check($mysqli) == true) : ?>
         <?php include './header.php';?>
-            <p>¡Bienvenido, <?php echo htmlentities($_SESSION['username']); ?>!</p>
             <div class="CSSTableGenerator">
-                
-      <div id="dialog" title="Asignar monitor" style="display:none;"> <p>Desea asignar este monitor a sus monitores</p></div>
+           <div id="dialog" title="Asignar monitor" style="display:none;"> <p>Desea asignar este monitor a sus monitores</p></div>
            <?php 
               $idl = $_SESSION['user_id'];
                monitores::asignarM($idl)?>

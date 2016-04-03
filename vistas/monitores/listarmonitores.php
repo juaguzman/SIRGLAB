@@ -21,7 +21,6 @@ sec_session_start();
     <body>
         <?php if (login_check($mysqli) == true) : ?>
         <?php include './header.php';?>
-            <p>¡Bienvenido, <?php echo htmlentities($_SESSION['username']); ?>!</p>
            
            <div id=dialog title=Asignar Monitor style=display:none;><p>Desea agregar el monitor sus monitores.</p></div>
              <div class="CSSTableGenerator" > 

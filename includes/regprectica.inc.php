@@ -82,16 +82,33 @@ if (isset($_POST['idcord'],$_POST['idmon'], $_POST['category'], $_POST['subcateg
             $error_msg .= '<p class="error">Database error line 55</p>';
             $stmt->close();
         }
+        
+        $prep_stmt = "select max(numficha) as 'ficha' from practicas where laboratorios_idlaboratorios = ? LIMIT 1";
+                $stmt = $mysqli->prepare($prep_stmt);
+
+
+                if ($stmt) 
+                   {
+                    $stmt->bind_param('s', $labor);
+                    $stmt->execute();
+                    $stmt->store_result(); 
+                    // Obtiene las variables del resultado.
+                    $stmt->bind_result($ficha);
+                    $stmt->fetch();
+                   }
+        
+        
         if (empty($error_msg) && empty($error_msg_hr) && empty($error_msg_lab) && empty($error_msg_mnt)) 
         {
  
         // Inserta el nuevo prectica a la base de datos.  
-        if ($insert_stmt = $mysqli->prepare("insert into practicas (nombre_pract, docente,guia,numgrupos,numestudiantes,obscordinador,laboratoristas_members_id,laboratorios_idlaboratorios,monitores_cedula,materias_idmaterias,programa_idprograma,horapl,horaini,horaplfn,fecha) Values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);")) 
+        if ($insert_stmt = $mysqli->prepare("insert into practicas (nombre_pract, docente, guia, numgrupos, numestudiantes, obscordinador, laboratoristas_members_id, laboratorios_idlaboratorios, monitores_cedula, materias_idmaterias, programa_idprograma, horapl, horaini, horaplfn, fecha, numficha) Values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);")) 
         {
 //            date_default_timezone_set("America/Bogota");
             $horain = date("H:i:s");
             $fecha = date("Y-m-d");
-            $insert_stmt->bind_param('sssssssssssssss', $npractica ,$docen, $rporguia, $ngrup, $nestudian, $obscor,$idcor,$labor,$idmon,$mate,$prog,$hinicio,$horain,$hfin,$fecha);
+            $fichan = $ficha+1;
+            $insert_stmt->bind_param('ssssssssssssssss', $npractica ,$docen, $rporguia, $ngrup, $nestudian, $obscor,$idcor,$labor,$idmon,$mate,$prog,$hinicio,$horain,$hfin,$fecha,$fichan);
             // Ejecuta la consulta preparada.
             if (! $insert_stmt->execute())
             {

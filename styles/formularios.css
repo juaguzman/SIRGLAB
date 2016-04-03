@@ -86,9 +86,9 @@ Modificar de aki para abajo
    box-shadow: rgba(000,000,000,0.9) 0 1px 2px, inset rgba(255,255,255,0.4) 0 0px 0;
    font-family: 'Arial',Helvetica,sans-serif;
    text-decoration: none;
-   min-width:35%;
+   min-width:46%;
    padding:15px;
-   width:35%;
+   width:46%;
    }
    
    .form-container-tab
@@ -198,6 +198,15 @@ Modificar de aki para abajo
    }
    
 #area
+{
+    height: 75px;
+    width: 98%;
+    margin: 0 auto;
+    padding: 5px;
+    resize: none;
+}
+
+#area2
 {
     height: 75px;
     width: 98%;

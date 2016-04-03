@@ -31,7 +31,8 @@ function sec_session_start()
 /*
  * Funcion de logeo para una conexion segura a la aplicacion
  */
-function login($email, $password, $mysqli) {
+function login($email, $password, $mysqli) 
+        {
     // Usar declaraciones preparadas significa que la inyección de SQL no será posible.
     if ($stmt = $mysqli->prepare("SELECT id, username, password, salt,rol 
         FROM members

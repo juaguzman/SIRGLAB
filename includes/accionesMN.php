@@ -22,6 +22,10 @@ static function ListarMonitores()
         $result   = $mysqli->query($consulta);
         
         echo "<table> \n";
+        echo "<thead>";
+        echo "<tr><td colspan=9>Lista de Monitores</td></tr>";
+        echo "<thead>";
+        echo "<tbody>";
         echo "<tr><td>&nbsp;CEDULA&nbsp;</td><td>&nbsp;NOMBRES&nbsp;</td><td>&nbsp;APELLIDOS&nbsp;</td><td >&nbsp;CELULAR&nbsp;</td><td >&nbsp;EMAIL&nbsp;</td><td >&nbsp;PROGRAMA&nbsp;</td><td >&nbsp;SEMESTRE&nbsp;</td><td >&nbsp;ESTADO&nbsp;</td><td >&nbsp;OPCIONES&nbsp;</td></tr> \n";
         while ($campo=mysqli_fetch_object($result)) 
                 {
@@ -35,10 +39,8 @@ static function ListarMonitores()
                     }
                                        
             echo "<tr><td>$campo->cedula</td><td>$campo->nombres</td><td>$campo->apellidos</td><td>$campo->celular</td><td>$campo->email</td><td>$campo->programa</td><td>$campo->semestre</td><td>$estado</td><td><a href=verHorarios.php?cedu=$campo->cedula><img src=../../imagenes/iconos/horario.png width=30px heigt=30px ></a></td>";
-
-            
-            
-        }
+                }
+        echo "<tbody>";
         echo "</table> \n";
       $mysqli->close();        
             
