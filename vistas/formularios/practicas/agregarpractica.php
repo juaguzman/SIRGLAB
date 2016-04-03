@@ -32,6 +32,20 @@ sec_session_start();
   });
   </script>
         <script language="javascript">
+             $(document).ready(function()
+        {
+           $("#labor").change(function () 
+           {
+                   $("#labor option:selected").each(function () 
+                   {
+                    id_category = $(this).val();
+                    $.post("categories.php", { id_category: id_category }, function(data){
+                        $("#category").html(data);
+                    });            
+                });
+           })
+        });
+        
         $(document).ready(function()
         {
            $("#category").change(function () 
@@ -73,21 +87,22 @@ sec_session_start();
                         </td>
                  </tr>
                  <tr>
+                      <td>
+                <div class="form-title">Laboratorio <?php if (!empty($error_msg_lab)) { echo $error_msg_lab;} ?> </div>
+               <?php formularios::sallabor($id)?>
+                    </td>
                      <td>
                 <div class="form-title">Programa <?php if (!empty($error_msg_prog)) { echo $error_msg_prog;} ?></div>
-                 <?php formularios::selprograma()?> 
-                    </td>
-                    <td>
-                <div class="form-title">Materia</div>
-                <select class="form-field" name="subcategory" id="subcategory" required>
+                <select class="form-field" name="category" id="category" required>
                 </select>
-                    </td>
+                    </td>                
                 </tr>
                 <tr>
                     <td>
-                <div class="form-title">Laboratorio <?php if (!empty($error_msg_lab)) { echo $error_msg_lab;} ?> </div>
-               <?php formularios::sallabor()?>
-                    </td>
+                <div class="form-title">Materia <?php if (!empty($error_msg_mat)) { echo $error_msg_mat;} ?></div>
+                <select class="form-field" name="subcategory" id="subcategory" required>
+                </select>
+                    </td> 
                     <td>
                 <div class="form-title">Nombre Practica</div>
                 <input class="form-field" type="text" name="npractica" value="<?php if (!empty($npractica)) { echo $npractica;} ?>" required placeholder="Practica" />            

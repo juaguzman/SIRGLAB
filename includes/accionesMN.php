@@ -46,6 +46,40 @@ static function ListarMonitores()
             
         } 
         
+        
+        static function ListarMonitoresCord($id)
+{
+    
+        
+        include 'db_connect.php';
+        $consulta= "SELECT * FROM monitores WHERE laboratoristas_members_id = $id";
+        $result   = $mysqli->query($consulta);
+        
+        echo "<table> \n";
+        echo "<thead>";
+        echo "<tr><td colspan=9>Lista de Monitores</td></tr>";
+        echo "<thead>";
+        echo "<tbody>";
+        echo "<tr><td>&nbsp;CEDULA&nbsp;</td><td>&nbsp;NOMBRES&nbsp;</td><td>&nbsp;APELLIDOS&nbsp;</td><td >&nbsp;CELULAR&nbsp;</td><td >&nbsp;EMAIL&nbsp;</td><td >&nbsp;PROGRAMA&nbsp;</td><td >&nbsp;SEMESTRE&nbsp;</td><td >&nbsp;ESTADO&nbsp;</td><td >&nbsp;OPCIONES&nbsp;</td></tr> \n";
+        while ($campo=mysqli_fetch_object($result)) 
+                {
+                    if(strcmp($campo->estado, "fr")==0)
+                    {
+                        $estado="Inactivo";
+                    }
+                    else
+                    {
+                       $estado = "Activo";
+                    }
+                                       
+            echo "<tr><td>$campo->cedula</td><td>$campo->nombres</td><td>$campo->apellidos</td><td>$campo->celular</td><td>$campo->email</td><td>$campo->programa</td><td>$campo->semestre</td><td>$estado</td><td><a href=verHorarios.php?cedu=$campo->cedula><img src=../../imagenes/iconos/horario.png width=30px heigt=30px ></a></td>";
+                }
+        echo "<tbody>";
+        echo "</table> \n";
+      $mysqli->close();        
+            
+        } 
+        
  static function asignarM($idl)
  {
       include 'db_connect.php';
@@ -80,8 +114,8 @@ static function asigmonitores($idl,$cedu)
                         {
                             header('Location: ../error.php?err=Registration failure: UPDATE');
                         }
-                           
-                            header('Location: ../vistas/monitores/asignarmonitores.php');
+                          $msj="<div id=dialog-message title=ASIGNADO> <p>El monitor le fue asignado satisfactoriamente</p></div>";
+                            header('Location: ../vistas/monitores/asignarmonitores.php?msj='.$msj);
                    }
     
 }

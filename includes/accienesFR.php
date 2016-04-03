@@ -32,12 +32,12 @@ static function selprograma()
  * llena el slect de laboratorios para agragar practicas
  */
 
-static function sallabor()
+static function sallabor($id)
 {
      include 'db_connect.php';
-     echo "<select class=form-field  name=labor>";
-     echo "<option value=>Seleccione Laboratorio </option>";
-      $result = $mysqli->query("SELECT idlaboratorios, nombre FROM laboratorios ");
+     echo "<select class=form-field  name=labor id=labor>";
+     echo "<option >Seleccione Laboratorio </option>";
+      $result = $mysqli->query("SELECT idlaboratorios, nombre FROM laboratorios where laboratoristas_members_id = $id");
              if ($result->num_rows > 0) 
                {
              while ($row = $result->fetch_assoc()) 
@@ -102,10 +102,10 @@ static function listatodpractlab($idlab)
         
         echo "<table> \n";
         echo "<thead><tr><td colspan=12>Listado de practicas</td></tr></thead>";
-        echo "<tr><td>&nbsp;NUM PRACTICA&nbsp;</td><td>&nbsp;LABORATORIO&nbsp;</td><td>NUM GUIA</td><td>&nbsp;MONITOR&nbsp;</td><td >&nbsp;PROGRAMA&nbsp;</td><td >&nbsp;MATERIA&nbsp;</td><td >&nbsp;PRACTICA&nbsp;</td><td >&nbsp;DOCENTE&nbsp;</td><td >&nbsp;FECHA&nbsp;</td><td >&nbsp;HORA INI&nbsp;</td><td >&nbsp;HORA FIN&nbsp;</td><td >&nbsp;OPCIONES&nbsp;</td></tr> \n";
+        echo "<tr><td>&nbsp;NUM PRACTICA&nbsp;</td><td>&nbsp;LABORATORIO&nbsp;</td><td>&nbsp;MONITOR&nbsp;</td><td >&nbsp;PROGRAMA&nbsp;</td><td >&nbsp;MATERIA&nbsp;</td><td >&nbsp;PRACTICA&nbsp;</td><td >&nbsp;DOCENTE&nbsp;</td><td >&nbsp;FECHA&nbsp;</td><td >&nbsp;HORA INI&nbsp;</td><td >&nbsp;HORA FIN&nbsp;</td><td >&nbsp;OPCIONES&nbsp;</td></tr> \n";
         while ($campo=mysqli_fetch_object($result)) 
                 {                      
-                 echo "<tr><td>$campo->idpracticas</td><td>$campo->labo</td><td>$campo->numficha</td><td>$campo->monit</td><td>$campo->prog</td><td>$campo->mater</td><td>$campo->nombre_pract</td><td>$campo->docente</td><td>$campo->fecha</td><td>$campo->horaini</td><td>$campo->horafin</td><td><a href=../../../includes/procesarFR.php?id=$campo->idpracticas&req=finp /><img src=../../../imagenes/iconos/ver.png width=30px heigt=30px ></a></td>";
+                 echo "<tr><td>$campo->numficha</td><td>$campo->labo</td><td>$campo->monit</td><td>$campo->prog</td><td>$campo->mater</td><td>$campo->nombre_pract</td><td>$campo->docente</td><td>$campo->fecha</td><td>$campo->horaini</td><td>$campo->horafin</td><td><a href=../../../includes/procesarFR.php?id=$campo->idpracticas&req=finp /><img src=../../../imagenes/iconos/ver.png width=30px heigt=30px ></a></td>";
                 }
         echo "</table> \n";
       $mysqli->close();              

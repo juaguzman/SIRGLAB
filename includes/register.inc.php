@@ -104,7 +104,20 @@ if (isset($_POST['cedu'],$_POST['username'], $_POST['email'], $_POST['p']))
             {
                 header('Location: ../error.php?err=Registration failure: INSERT');
             }
+        else 
+        {
+           if ($insert_stmt = $mysqli->prepare("INSERT INTO laboratoristas (members_id) VALUE (?)")) 
+        {
+            $insert_stmt->bind_param('s', $cedu);
+            // Ejecuta la consulta preparada.
+            if (! $insert_stmt->execute())
+            {
+                header('Location: ../error.php?err=Registration failure: INSERT');
+            }
+        } 
         }
         header('Location: ./register_success.php');
+        }
+       
     }
 }

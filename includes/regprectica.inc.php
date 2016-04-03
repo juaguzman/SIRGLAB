@@ -7,6 +7,7 @@ $error_msg = "";
 $error_msg_mnt="";
 $error_msg_lab="";
 $error_msg_hr="";
+$error_msg_prog="";
 
 if (isset($_POST['idcord'],$_POST['idmon'], $_POST['category'], $_POST['subcategory'], $_POST['labor'], $_POST['npractica'], $_POST['docente'], $_POST['rpor']
         , $_POST['nuestud'], $_POST['nugrup'], $_POST['hinicio'], $_POST['hfin'])) 
@@ -49,7 +50,7 @@ if (isset($_POST['idcord'],$_POST['idmon'], $_POST['category'], $_POST['subcateg
             if (!$stmt->num_rows == 1) 
                 {
                  // no selecciono un monitor
-                $error_msg_mnt = '<p class="error">monitor no sido sleccionado </p>';               
+                $error_msg_mnt = '<p class="error">Seleccione un monitor</p>';               
 
                 }
                 
@@ -82,6 +83,52 @@ if (isset($_POST['idcord'],$_POST['idmon'], $_POST['category'], $_POST['subcateg
             $error_msg .= '<p class="error">Database error line 55</p>';
             $stmt->close();
         }
+         $prep_stmt = "SELECT * FROM programa where idprograma = ? LIMIT 1";
+         $stmt = $mysqli->prepare($prep_stmt);
+     // Verifica si selecciono un monitor.  
+    if ($stmt) 
+        {
+            $stmt->bind_param('s', $prog);
+            $stmt->execute();
+            $stmt->store_result();
+
+            if (!$stmt->num_rows == 1) 
+                {
+                 // no selecciono un monitor
+                $error_msg_prog= '<p class="error">Seleccione un programa</p>';               
+
+                }
+                
+        } 
+    else 
+        {
+            $error_msg .= '<p class="error">Database error line 55</p>';
+            $stmt->close();
+        }
+        
+        $prep_stmt = "SELECT idmaterias FROM materias where idmaterias = ? LIMIT 1";
+         $stmt = $mysqli->prepare($prep_stmt);
+     // Verifica si selecciono una materia .  
+    if ($stmt) 
+        {
+            $stmt->bind_param('s', $mate);
+            $stmt->execute();
+            $stmt->store_result();
+
+            if (!$stmt->num_rows == 1) 
+                {
+                 // no selecciono un monitor
+                $error_msg_mat = '<p class="error">No selecciono una materia</p>';               
+
+                }
+                
+        } 
+    else 
+        {
+            $error_msg .= '<p class="error">Database error line 55</p>';
+            $stmt->close();
+        }
+        
         
         $prep_stmt = "select max(numficha) as 'ficha' from practicas where laboratorios_idlaboratorios = ? LIMIT 1";
                 $stmt = $mysqli->prepare($prep_stmt);
@@ -98,7 +145,7 @@ if (isset($_POST['idcord'],$_POST['idmon'], $_POST['category'], $_POST['subcateg
                    }
         
         
-        if (empty($error_msg) && empty($error_msg_hr) && empty($error_msg_lab) && empty($error_msg_mnt)) 
+        if (empty($error_msg) && empty($error_msg_hr) && empty($error_msg_lab) && empty($error_msg_mnt)&& empty($error_msg_prog)) 
         {
  
         // Inserta el nuevo prectica a la base de datos.  

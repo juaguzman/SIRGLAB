@@ -24,8 +24,9 @@ sec_session_start();
            
            <div id=dialog title=Asignar Monitor style=display:none;><p>Desea agregar el monitor sus monitores.</p></div>
              <div class="CSSTableGenerator" > 
-           <?php             
-               monitores::ListarMonitores()?>
+           <?php    
+                $id = $_SESSION['user_id'];
+               monitores::ListarMonitoresCord($id)?>
             </div>  
         <?php else : ?>
             <p>

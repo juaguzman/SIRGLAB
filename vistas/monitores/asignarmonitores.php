@@ -36,10 +36,25 @@ sec_session_start();
             }
       });
     };
+    $(function() 
+    {
+    $( "#dialog-message" ).dialog({
+      modal: true,
+      buttons: {
+        Ok: function() {
+          $( this ).dialog( "close" );
+        }
+      }
+    });
+  });
     </script>
         
  
     </head>
+     <?php if(isset($_REQUEST['msj'])){
+        $msj = $_REQUEST['msj'];
+     echo "$msj";
+    }?>
     
     <body>
         <?php if (login_check($mysqli) == true) : ?>
