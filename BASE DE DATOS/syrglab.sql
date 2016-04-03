@@ -84,7 +84,7 @@ CREATE TABLE `horarios` (
   `horaentra` time NOT NULL,
   `horasale` time NOT NULL,
   `monitores_cedula` int(10) NOT NULL,
-  PRIMARY KEY (`idhorarios`,`monitores_cedula`),
+  PRIMARY KEY (`idhorarios`),
   KEY `fk_horarios_monitores1_idx` (`monitores_cedula`),
   CONSTRAINT `fk_horarios_monitores1` FOREIGN KEY (`monitores_cedula`) REFERENCES `monitores` (`cedula`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
@@ -96,7 +96,7 @@ CREATE TABLE `horarios` (
 
 LOCK TABLES `horarios` WRITE;
 /*!40000 ALTER TABLE `horarios` DISABLE KEYS */;
-INSERT INTO `horarios` VALUES (1,'Lunes','07:00:00','13:00:00',1085233145),(2,'Martes','14:00:00','16:00:00',1085233145),(3,'Jueves','13:00:00','16:00:00',1085233145),(4,'Viernes','14:00:00','15:00:00',1085233145),(5,'Miercoles','15:00:00','16:00:00',1085233145);
+INSERT INTO `horarios` VALUES (1,'Lunes','07:00:00','13:00:00',1085233145),(2,'Martes','09:00:00','13:00:00',1085233145),(3,'Jueves','13:00:00','16:00:00',1085233145),(4,'Viernes','14:00:00','15:00:00',1085233145),(5,'Miercoles','15:00:00','16:00:00',1085233145);
 /*!40000 ALTER TABLE `horarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -112,11 +112,11 @@ CREATE TABLE `laboratorios` (
   `nombre` varchar(45) DEFAULT NULL,
   `descripcion` varchar(45) DEFAULT NULL,
   `sede` enum('Alvernia','otros') DEFAULT NULL,
-  `laboratoristas_idlaboratoristas` int(11) NOT NULL,
+  `laboratoristas_members_id` int(11) NOT NULL,
   PRIMARY KEY (`idlaboratorios`),
-  KEY `fk_laboratorios_laboratoristas1_idx` (`laboratoristas_idlaboratoristas`),
-  CONSTRAINT `fk_laboratorios_laboratoristas1` FOREIGN KEY (`laboratoristas_idlaboratoristas`) REFERENCES `laboratoristas` (`idlaboratoristas`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  KEY `fk_laboratorios_laboratoristas1_idx` (`laboratoristas_members_id`),
+  CONSTRAINT `fk_laboratorios_laboratoristas1` FOREIGN KEY (`laboratoristas_members_id`) REFERENCES `laboratoristas` (`members_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -125,7 +125,7 @@ CREATE TABLE `laboratorios` (
 
 LOCK TABLES `laboratorios` WRITE;
 /*!40000 ALTER TABLE `laboratorios` DISABLE KEYS */;
-INSERT INTO `laboratorios` VALUES (2,'Electronica','Laboratorio de electronica para precticas pri','Alvernia',1);
+INSERT INTO `laboratorios` VALUES (2,'Electronica','Laboratorio de electronica para precticas pri','Alvernia',1),(3,'Quimica','laboratorio de quimica para prcticas','Alvernia',1),(4,'Fisica','Labroatario de practicas de fisica y derviada','Alvernia',1085277182);
 /*!40000 ALTER TABLE `laboratorios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -137,16 +137,15 @@ DROP TABLE IF EXISTS `laboratoristas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `laboratoristas` (
-  `idlaboratoristas` int(11) NOT NULL AUTO_INCREMENT,
   `members_id` int(11) NOT NULL,
   `nombres` varchar(45) DEFAULT NULL,
   `apellidos` varchar(45) DEFAULT NULL,
   `celular` varchar(45) DEFAULT NULL,
   `direccion` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`idlaboratoristas`),
+  PRIMARY KEY (`members_id`),
   KEY `fk_laboratoristas_members1_idx` (`members_id`),
   CONSTRAINT `fk_laboratoristas_members1` FOREIGN KEY (`members_id`) REFERENCES `members` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -155,7 +154,7 @@ CREATE TABLE `laboratoristas` (
 
 LOCK TABLES `laboratoristas` WRITE;
 /*!40000 ALTER TABLE `laboratoristas` DISABLE KEYS */;
-INSERT INTO `laboratoristas` VALUES (1,1085233784,'Martin ','Moncayo','3017700964','calle 17');
+INSERT INTO `laboratoristas` VALUES (1,'test','user','3017700964','calle 17'),(1085277182,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `laboratoristas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -173,7 +172,7 @@ CREATE TABLE `login_attempts` (
   PRIMARY KEY (`id`),
   KEY `fk_login_attempts_members_idx` (`user_id`),
   CONSTRAINT `fk_login_attempts_members` FOREIGN KEY (`user_id`) REFERENCES `members` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -182,8 +181,31 @@ CREATE TABLE `login_attempts` (
 
 LOCK TABLES `login_attempts` WRITE;
 /*!40000 ALTER TABLE `login_attempts` DISABLE KEYS */;
-INSERT INTO `login_attempts` VALUES (2,2,'1458104323');
 /*!40000 ALTER TABLE `login_attempts` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `materias`
+--
+
+DROP TABLE IF EXISTS `materias`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `materias` (
+  `idmaterias` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idmaterias`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `materias`
+--
+
+LOCK TABLES `materias` WRITE;
+/*!40000 ALTER TABLE `materias` DISABLE KEYS */;
+INSERT INTO `materias` VALUES (1,'Fisica'),(2,'Ondas y ocilaciones'),(3,'Investigacion'),(4,'Quimica'),(5,'Redes'),(6,'Electronica Digital');
+/*!40000 ALTER TABLE `materias` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -210,35 +232,8 @@ CREATE TABLE `members` (
 
 LOCK TABLES `members` WRITE;
 /*!40000 ALTER TABLE `members` DISABLE KEYS */;
-INSERT INTO `members` VALUES (1,'test_user','test@example.com','admin','00807432eae173f652f2064bdca1b61b290b52d40e429a7d295d76a71084aa96c0233b82f1feac45529e0726559645acaed6f3ae58a286b9f075916ebf66cacc','f9aab579fc1b41ed0c44fe4ecdbfcdb4cb99b9023abb241a6db833288f4eea3c02f76e0d35204a8695077dcf81932aa59006423976224be0390395bae152d4ef'),(2,'juaguzman','juancarlos_891111@hotmail.com','usua','fb8083dd4e560168186f2010b8ef2d86c1c4b01b632cb2a6d9239246ed523f10008e8d41afca1cac6597a96105cffe63c91856f51ee68988db358f3dcdd94331','82ad186ce4e6c073bdb8f0cac396cceedfbcc70ff493d9c2858725ae6a4798c1c96e2a8da6a9fb68316ba562c84d2346971727acad14150ca862b20438e0f026'),(8945,'jkl','jk@gmail','admin','sa7d7sa8c','sadasdasd54654'),(1085233784,'mmoncayo','mmoncayo@gmail.com','admin','d4658b4123053cba6ce74c286de7b5bf92f25bb2a1ce63bced5f6a18c1e158792cf396fba6a702fbbca0ff84ed706824a5be4b95415b5865a71bf31dd5cffa3d','ce28cc97e7b47ef5274174fdfa00bf54774b23d22205e0f11549d9d9cbdf4311d3799d9832f4af16bb00d5d2f1b5d584cab767f2b451620e3c733d607ec539b6'),(1085325895,'fer93','ferchita1909@hotmail.com','usua','37420204cdcd62a9af338c5914eeef582af433ca3f4da290d27e6809e82b42e791cd5999076dbb08929a120eef282e18929943f9b99a764ecbc1601cb0541122','3f079ad918fc1c9a069e11904e2d4fc10d5f82fc05d33150e6aaba7bb7771d372c5a1d06b062edef7d0c5529cdbe5f9d6d79b648162f7619a4552b1859db43aa');
+INSERT INTO `members` VALUES (1,'test_user','test@example.com','admin','00807432eae173f652f2064bdca1b61b290b52d40e429a7d295d76a71084aa96c0233b82f1feac45529e0726559645acaed6f3ae58a286b9f075916ebf66cacc','f9aab579fc1b41ed0c44fe4ecdbfcdb4cb99b9023abb241a6db833288f4eea3c02f76e0d35204a8695077dcf81932aa59006423976224be0390395bae152d4ef'),(1085277182,'juank','juaguzman@umariana.edu.co','usua','e560f6630596c2a20cad7700d740438da55c511095aa1ec751ca2ec94df53ed00717694630795511fd5674d8c9a12972693207c460607366f5254c539ab23750','e27f312897a5f8b4d15c9b97b8ee8014331b680dc21f5539b92f18a62ea4053a5b6388815d3e1409ab5c404aaa41f5847399c31df6e1f2cb4046ae921f3f91a6');
 /*!40000 ALTER TABLE `members` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `mentradas`
---
-
-DROP TABLE IF EXISTS `mentradas`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `mentradas` (
-  `idmentradas` int(11) NOT NULL AUTO_INCREMENT,
-  `hora` time NOT NULL,
-  `fecha` date NOT NULL,
-  `monitores_cedula` int(10) NOT NULL,
-  PRIMARY KEY (`idmentradas`),
-  KEY `fk_mentradas_monitores1_idx` (`monitores_cedula`),
-  CONSTRAINT `fk_mentradas_monitores1` FOREIGN KEY (`monitores_cedula`) REFERENCES `monitores` (`cedula`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `mentradas`
---
-
-LOCK TABLES `mentradas` WRITE;
-/*!40000 ALTER TABLE `mentradas` DISABLE KEYS */;
-/*!40000 ALTER TABLE `mentradas` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -256,8 +251,11 @@ CREATE TABLE `monitores` (
   `email` varchar(45) NOT NULL,
   `programa` varchar(45) NOT NULL,
   `semestre` int(2) NOT NULL,
-  `estado` enum('fr','dn') DEFAULT NULL,
-  PRIMARY KEY (`cedula`)
+  `estado` enum('fr','dn') NOT NULL,
+  `laboratoristas_members_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`cedula`),
+  KEY `fk_monitores_laboratoristas1_idx` (`laboratoristas_members_id`),
+  CONSTRAINT `fk_monitores_laboratoristas1` FOREIGN KEY (`laboratoristas_members_id`) REFERENCES `laboratoristas` (`members_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -267,35 +265,37 @@ CREATE TABLE `monitores` (
 
 LOCK TABLES `monitores` WRITE;
 /*!40000 ALTER TABLE `monitores` DISABLE KEYS */;
-INSERT INTO `monitores` VALUES (1234567,'asdasd','asdsade',3201584562,'sasd','sadsad',8,'fr'),(41755279,'Martha Cecilia','escandom',3002025075,'mmoncayo@gmail.com','sistemas',5,NULL),(1085233145,'juan','guzman',20256048,'juans_891111@hotmail.com','ambiental',6,'fr'),(1085277152,'camilo','peres',2147483647,'juancarlos_891111@hotmail.com','ambiental',6,'fr'),(1085277182,'andres','sadsadsad',2147483647,'juagu@umariana.edu.co','ambiental',7,'fr'),(1085277185,'Ã±ato Ã±Ã±','bbbbb',2147483647,'juans16_891111@hotmail.com','ambiental',9,'fr');
+INSERT INTO `monitores` VALUES (45615,'HUIH','HUHIU',446546,'mkbuyyu','buyuv',5,'dn',1),(1234567,'mTest','mUser',3201584562,'sasd','sadsad',8,'fr',1),(41755279,'Martha Cecilia','escandom',3002025075,'mmoncayo@gmail.com','sistemas',5,'fr',NULL),(108523512,'camilo','QuiÃ±ones',3014568912,'juagu@umariana.edu.co','Sistemas',7,'dn',1085277182),(1085233145,'juan','guzman',20256048,'juans_891111@hotmail.com','ambiental',6,'fr',NULL);
 /*!40000 ALTER TABLE `monitores` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `monitores_has_laboratorios`
+-- Table structure for table `mregistro`
 --
 
-DROP TABLE IF EXISTS `monitores_has_laboratorios`;
+DROP TABLE IF EXISTS `mregistro`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `monitores_has_laboratorios` (
+CREATE TABLE `mregistro` (
+  `idmentradas` int(11) NOT NULL AUTO_INCREMENT,
+  `horaen` time NOT NULL,
+  `horasal` time DEFAULT NULL,
+  `fecha` date NOT NULL,
   `monitores_cedula` int(10) NOT NULL,
-  `laboratorios_idlaboratorios` int(11) NOT NULL,
-  PRIMARY KEY (`monitores_cedula`,`laboratorios_idlaboratorios`),
-  KEY `fk_monitores_has_laboratorios_laboratorios1_idx` (`laboratorios_idlaboratorios`),
-  KEY `fk_monitores_has_laboratorios_monitores1_idx` (`monitores_cedula`),
-  CONSTRAINT `fk_monitores_has_laboratorios_laboratorios1` FOREIGN KEY (`laboratorios_idlaboratorios`) REFERENCES `laboratorios` (`idlaboratorios`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_monitores_has_laboratorios_monitores1` FOREIGN KEY (`monitores_cedula`) REFERENCES `monitores` (`cedula`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`idmentradas`),
+  KEY `fk_mentradas_monitores1_idx` (`monitores_cedula`),
+  CONSTRAINT `fk_mentradas_monitores1` FOREIGN KEY (`monitores_cedula`) REFERENCES `monitores` (`cedula`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `monitores_has_laboratorios`
+-- Dumping data for table `mregistro`
 --
 
-LOCK TABLES `monitores_has_laboratorios` WRITE;
-/*!40000 ALTER TABLE `monitores_has_laboratorios` DISABLE KEYS */;
-/*!40000 ALTER TABLE `monitores_has_laboratorios` ENABLE KEYS */;
+LOCK TABLES `mregistro` WRITE;
+/*!40000 ALTER TABLE `mregistro` DISABLE KEYS */;
+INSERT INTO `mregistro` VALUES (3,'07:05:10','09:16:34','2016-04-01',45615),(7,'09:39:12','09:47:34','2016-03-29',45615),(8,'09:40:36','09:47:34','2016-03-30',45615),(9,'09:44:26','10:07:17','2016-03-31',1234567),(10,'09:48:55','18:31:57','2016-03-31',45615),(11,'10:37:52','18:31:57','2016-03-31',45615),(12,'11:41:45','18:31:57','2016-03-31',45615),(13,'17:58:23','18:31:57','2016-03-31',45615),(14,'18:31:05','18:31:57','2016-03-31',45615),(15,'18:31:51','18:31:57','2016-03-31',45615),(16,'11:55:46',NULL,'2016-04-01',45615),(17,'13:49:27',NULL,'2016-04-03',108523512);
+/*!40000 ALTER TABLE `mregistro` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -308,11 +308,12 @@ DROP TABLE IF EXISTS `msalidas`;
 CREATE TABLE `msalidas` (
   `idmsalidas` int(11) NOT NULL AUTO_INCREMENT,
   `hora` time NOT NULL,
+  `horasal` time DEFAULT NULL,
   `fecha` date NOT NULL,
   `monitores_cedula` int(10) NOT NULL,
   PRIMARY KEY (`idmsalidas`),
-  KEY `fk_msalidas_monitores1_idx` (`monitores_cedula`),
-  CONSTRAINT `fk_msalidas_monitores1` FOREIGN KEY (`monitores_cedula`) REFERENCES `monitores` (`cedula`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_mentradas_monitores1_idx` (`monitores_cedula`),
+  CONSTRAINT `fk_mentradas_monitores10` FOREIGN KEY (`monitores_cedula`) REFERENCES `monitores` (`cedula`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -333,13 +334,38 @@ DROP TABLE IF EXISTS `practicas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `practicas` (
-  `idpracticas` int(11) NOT NULL,
-  `nombre` varchar(45) COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `numgrupos` int(2) DEFAULT NULL,
-  `programa` varchar(45) COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `profesor` varchar(45) COLLATE utf8_spanish2_ci DEFAULT NULL,
-  PRIMARY KEY (`idpracticas`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+  `idpracticas` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre_pract` varchar(45) CHARACTER SET utf8 NOT NULL,
+  `docente` varchar(45) CHARACTER SET utf8 NOT NULL,
+  `guia` enum('COMPLETA','INCOMPLETA') COLLATE utf8_spanish2_ci NOT NULL,
+  `numgrupos` int(2) NOT NULL,
+  `numestudiantes` int(2) NOT NULL,
+  `obsdocente` varchar(500) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `obscordinador` varchar(500) CHARACTER SET utf8 DEFAULT NULL,
+  `laboratoristas_members_id` int(11) NOT NULL,
+  `laboratorios_idlaboratorios` int(11) NOT NULL,
+  `monitores_cedula` int(10) NOT NULL,
+  `materias_idmaterias` int(11) NOT NULL,
+  `programa_idprograma` int(11) NOT NULL,
+  `horapl` time NOT NULL,
+  `horaini` time NOT NULL,
+  `horaplfn` time NOT NULL,
+  `horafin` time DEFAULT NULL,
+  `fecha` date NOT NULL,
+  `estado` enum('in','fn') COLLATE utf8_spanish2_ci NOT NULL,
+  `numficha` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idpracticas`),
+  KEY `fk_practicas_laboratorios1_idx` (`laboratorios_idlaboratorios`),
+  KEY `fk_practicas_monitores1_idx` (`monitores_cedula`),
+  KEY `fk_practicas_materias1_idx` (`materias_idmaterias`),
+  KEY `fk_practicas_programa1_idx` (`programa_idprograma`),
+  KEY `fk_practicas_laboratoristas1_idx` (`laboratoristas_members_id`),
+  CONSTRAINT `fk_practicas_laboratorios` FOREIGN KEY (`laboratorios_idlaboratorios`) REFERENCES `laboratorios` (`idlaboratorios`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_practicas_laboratoristas` FOREIGN KEY (`laboratoristas_members_id`) REFERENCES `laboratoristas` (`members_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_practicas_materias` FOREIGN KEY (`materias_idmaterias`) REFERENCES `materias` (`idmaterias`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_practicas_monitores` FOREIGN KEY (`monitores_cedula`) REFERENCES `monitores` (`cedula`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_practicas_programa` FOREIGN KEY (`programa_idprograma`) REFERENCES `programa` (`idprograma`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -348,7 +374,87 @@ CREATE TABLE `practicas` (
 
 LOCK TABLES `practicas` WRITE;
 /*!40000 ALTER TABLE `practicas` DISABLE KEYS */;
+INSERT INTO `practicas` VALUES (3,'MUR','testDos','COMPLETA',2,45,NULL,'',1,2,45615,2,2,'07:00:00','07:15:00','12:00:00',NULL,'2016-03-31','in',1),(5,'ssss','ssss','COMPLETA',2,10,NULL,'                           \r\n                ',1,2,45615,3,2,'19:00:00','00:44:09','10:00:00',NULL,'2016-04-01','in',2),(6,'ssss','ssss','COMPLETA',2,10,'prueba docente de practica','prueba de fin de practica',1,2,45615,2,1,'10:00:00','00:46:22','12:00:00','11:54:29','2016-04-01','fn',3),(7,'testpractica','testDocente','COMPLETA',2,20,NULL,'el Docente rompe una probeta ',1,2,45615,2,1,'07:00:00','00:49:46','12:00:00','11:48:30','2016-04-01','fn',4),(8,'testpractica','testDocente','COMPLETA',2,20,'ppprrrrrr','ooo',1,2,45615,2,1,'07:00:00','17:50:40','12:00:00','11:37:25','2016-03-31','fn',5),(9,'testpractica','testDocente','COMPLETA',2,20,NULL,'prueba tests fin practica',1,2,45615,2,1,'07:00:00','17:52:46','12:00:00','11:52:51','2016-03-31','fn',6),(10,'tets2','testpr2','COMPLETA',2,10,NULL,'                           \r\n                ',1,2,45615,1,1,'07:00:00','17:53:12','10:00:00',NULL,'2016-03-31','in',7),(11,'tets2','testpr2','COMPLETA',2,10,NULL,'                           \r\n                ',1,2,45615,1,1,'07:00:00','17:57:42','10:00:00',NULL,'2016-03-31','in',8),(12,'Tratamiento de datos','Javier Villalba','COMPLETA',3,12,NULL,'                           \r\n                ',1,2,45615,3,1,'07:00:00','18:00:21','11:00:00',NULL,'2016-03-31','in',9),(13,'Tratamiento de datos','Javier Villalba','COMPLETA',3,12,NULL,'                           \r\n                ',1,2,45615,3,1,'07:00:00','18:01:03','11:00:00',NULL,'2016-03-31','in',10),(14,'Tratamiento de datos','Javier Villalba','COMPLETA',3,12,NULL,'                           \r\n                ',1,2,45615,3,1,'07:00:00','18:07:41','11:00:00',NULL,'2016-03-31','in',11),(15,'prractestQuimica','doctestQuimica','COMPLETA',5,25,NULL,'                           \r\n                ',1,3,45615,4,3,'07:00:00','11:56:49','08:00:00',NULL,'2016-04-01','in',2),(16,'prractestQuimica','doctestQuimica','COMPLETA',5,25,NULL,'                           \r\n                ',1,3,45615,4,3,'07:00:00','12:04:36','08:00:00',NULL,'2016-04-01','in',1),(17,'RedesGrandes','Villalba','COMPLETA',3,15,NULL,'Practica demasiado corta',1,2,45615,5,2,'07:00:00','12:06:55','08:00:00',NULL,'2016-04-01','in',12),(18,'casas','pedro','COMPLETA',2,15,NULL,'',1085277182,4,108523512,1,1,'07:00:00','14:40:45','10:00:00','14:41:50','2016-04-03','fn',1);
 /*!40000 ALTER TABLE `practicas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `programa`
+--
+
+DROP TABLE IF EXISTS `programa`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `programa` (
+  `idprograma` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(45) NOT NULL,
+  `director` varchar(45) NOT NULL,
+  PRIMARY KEY (`idprograma`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `programa`
+--
+
+LOCK TABLES `programa` WRITE;
+/*!40000 ALTER TABLE `programa` DISABLE KEYS */;
+INSERT INTO `programa` VALUES (1,'Sistemas','Andres'),(2,'Ambiental','chucho'),(3,'Procesos','jam');
+/*!40000 ALTER TABLE `programa` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `programa_has_matrias`
+--
+
+DROP TABLE IF EXISTS `programa_has_matrias`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `programa_has_matrias` (
+  `programa_idprograma` int(11) NOT NULL,
+  `materias_idmaterias` int(11) NOT NULL,
+  PRIMARY KEY (`programa_idprograma`,`materias_idmaterias`),
+  KEY `fk_programa_has_matrias_materias1_idx` (`materias_idmaterias`),
+  CONSTRAINT `fk_programa_has_matrias_materias1` FOREIGN KEY (`materias_idmaterias`) REFERENCES `materias` (`idmaterias`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_programa_has_matrias_programa1` FOREIGN KEY (`programa_idprograma`) REFERENCES `programa` (`idprograma`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `programa_has_matrias`
+--
+
+LOCK TABLES `programa_has_matrias` WRITE;
+/*!40000 ALTER TABLE `programa_has_matrias` DISABLE KEYS */;
+INSERT INTO `programa_has_matrias` VALUES (1,1),(2,1),(3,1),(1,2),(2,2),(3,2),(1,3),(2,3),(3,3),(2,4),(3,4),(1,5),(2,5),(3,5),(1,6),(2,6),(3,6);
+/*!40000 ALTER TABLE `programa_has_matrias` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `programas_has_laboratorios`
+--
+
+DROP TABLE IF EXISTS `programas_has_laboratorios`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `programas_has_laboratorios` (
+  `programa_idprograma` int(11) NOT NULL,
+  `laboratorios_idlaboratorios` int(11) NOT NULL,
+  KEY `fk_programas_has_laboratorios_programa1_idx` (`programa_idprograma`),
+  KEY `fk_programas_has_laboratorios_laboratorios1_idx` (`laboratorios_idlaboratorios`),
+  CONSTRAINT `fk_programas_has_laboratorios_laboratorios1` FOREIGN KEY (`laboratorios_idlaboratorios`) REFERENCES `laboratorios` (`idlaboratorios`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_programas_has_laboratorios_programa1` FOREIGN KEY (`programa_idprograma`) REFERENCES `programa` (`idprograma`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `programas_has_laboratorios`
+--
+
+LOCK TABLES `programas_has_laboratorios` WRITE;
+/*!40000 ALTER TABLE `programas_has_laboratorios` DISABLE KEYS */;
+INSERT INTO `programas_has_laboratorios` VALUES (1,2),(1,4),(2,2),(2,3),(2,4),(3,2),(3,3),(3,4);
+/*!40000 ALTER TABLE `programas_has_laboratorios` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -388,4 +494,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-03-27 18:49:41
+-- Dump completed on 2016-04-03 15:47:43
