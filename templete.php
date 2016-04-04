@@ -20,11 +20,14 @@ sec_session_start();
                 del usuario para que las páginas puedan determinar el tipo de usuario 
                 autorizado para acceder a la página.
             </p>
+            
             <p>Regresar a la<a href="index.php">página de inicio de sesión.</a></p>
         <?php else : ?>
             <p>
                 <span class="error">No está autorizado para acceder a esta página.</span> Please <a href="index.php">login</a>.
             </p>
         <?php endif; ?>
+            
+        
     </body>
 </html>

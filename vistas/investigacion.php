@@ -25,20 +25,23 @@ sec_session_start();
             </p>
         <?php endif; ?>
             <div class="img1"  >
-                <img class="imge" src="../imagenes/alvernia.PNG">
+                <img class="imge" src="../imagenes/practicas/laboratorio-unimar3.jpg">
             </div>    
             <div  class="tabla2">
                 <table class="tablaI">
                     <tbody>
                         <tr>
+                            <th colspan="3"><h1>Investigaciones</h1></th>
+                        </tr>
+                        <tr>
                             <td class="cont1">
-                                <a href="practicas.php"><img class="dentro" src="../imagenes/iconoPra.png"></a>
+                                <img class="dentro" src="../imagenes/investigaciones/iconoInv+.png"><a href="#"></a>
                             </td>
                             <td class="cont1" >
-                                <a href="monitores.php"><img  class="dentro" src="../imagenes/iconoMon.png"></a>
+                                <img  class="dentro" src="../imagenes/investigaciones/iconoInv-.png"><a href="#"></a>
                             </td>
                             <td class="cont1 ">
-                                <a href="investigacion.php"><img  class="dentro" src="../imagenes/iconoInv.png"></a>
+                                <img  class="dentro" src="../imagenes/investigaciones/iconoInvV.png"><a href="#"></a>
                             </td>
                         </tr>
                     </tbody>
