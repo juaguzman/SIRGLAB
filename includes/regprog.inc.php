@@ -5,11 +5,12 @@ include_once 'psl-config.php';
  
 $error_msg_prog = "";
 
-if (isset($_POST['nomP'], $_POST['dir']))
+if (isset($_POST['nomPro'], $_POST['dirc']))
 {
-    $nomP = filter_input(INPUT_POST, 'nomP', FILTER_SANITIZE_STRING);
-    $dir = filter_input(INPUT_POST, 'dir', FILTER_SANITIZE_STRING);
-}
+    $nomP = filter_input(INPUT_POST, 'nomPro', FILTER_SANITIZE_STRING);
+    $dir = filter_input(INPUT_POST, 'dirc', FILTER_SANITIZE_STRING);
+    $nomP = ucwords(strtolower($nomP));;
+
     $prep_stmt = "SELECT * FROM programa where nombre = ? LIMIT 1";
     $stmt = $mysqli->prepare($prep_stmt);
 
@@ -19,24 +20,20 @@ if (isset($_POST['nomP'], $_POST['dir']))
             $stmt->execute();
             $stmt->store_result();
 
-            if (!$stmt->num_rows == 1) 
+            if ($stmt->num_rows == 1) 
                 {
                  // no selecciono un monitor
                 $error_msg_prog= '<p class="error">El programa ya existe</p>';               
 
                 }
+        }
             else 
                 {
-                    $error_msg .= '<p class="error">Database error line 55</p>';
+                    $error_msg_prog .= '<p class="error">Database error line 55</p>';
                }
-                if (empty($error_msg)) 
+                if (empty($error_msg_prog)) 
                     {
-                        // Crear una sal aleatoria.
-                        //$random_salt = hash('sha512', uniqid(openssl_random_pseudo_bytes(16), TRUE)); // Did not work
-                        $random_salt = hash('sha512', uniqid(mt_rand(1, mt_getrandmax()), true));
- 
-                    }
-                // Inserta el nuevo usuario a la base de datos.  
+                             // Inserta el nuevo usuario a la base de datos.  
                 if ($insert_stmt = $mysqli->prepare("INSERT INTO programa (nombre, director) VALUES (?, ?)")) 
                 {
                     $insert_stmt->bind_param('ss', $nomP,$dir);
@@ -45,6 +42,13 @@ if (isset($_POST['nomP'], $_POST['dir']))
                     {
                         header('Location: ../error.php?err=Registration failure: INSERT');
                     }
-                    header('Location: ./register_success.php');
+                    $nomP = NULL;
+                    $dir = NULL;                    
+                   echo "<div id=dialog-message title=Programa> <p>Programa agregado correctamente</p></div>";
                 }
+ 
+                    }
+          
         }
+        
+ 

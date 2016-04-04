@@ -1,7 +1,7 @@
 <?php
-include_once '../includes/db_connect.php';
-include_once '../includes/functions.php';
-include_once '../includes/register.inc.php';
+include_once '../../includes/db_connect.php';
+include_once '../../includes/functions.php';
+include_once '../../includes/register.inc.php';
 
 sec_session_start();
 
@@ -11,12 +11,12 @@ sec_session_start();
     <head>
         <meta charset="UTF-8">
         <title>SIRGLAB Umariana: Formulario de registro</title>
-        <script type="text/JavaScript" src="../js/sha512.js"></script> 
-        <script type="text/JavaScript" src="../js/forms.js"></script>
-        <link rel="stylesheet" href="../styles/main.css" />
-        <link rel="stylesheet" href="../styles/menu.css" />
-        <link rel="stylesheet" href="../styles/registro.css" />
-        <link rel="stylesheet" href="../styles/monitores_1.css" />
+        <script type="text/JavaScript" src="../../js/sha512.js"></script> 
+        <script type="text/JavaScript" src="../../js/forms.js"></script>
+        <link rel="stylesheet" href="../../styles/main.css" />
+        <link rel="stylesheet" href="../../styles/menu.css" />
+        <link rel="stylesheet" href="../../styles/registro.css" />
+        <link rel="stylesheet" href="../../styles/monitores_1.css" />
     </head>
     <?php include './header.php';?>
     <body>
