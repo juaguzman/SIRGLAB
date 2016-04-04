@@ -28,6 +28,7 @@ sec_session_start();
                    monitores::verHorarios($cedu); 
               }
              ?>
+                
             </div>    
                 
         <?php else : ?>

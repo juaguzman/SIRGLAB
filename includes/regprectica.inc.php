@@ -37,6 +37,10 @@ if (isset($_POST['idcord'],$_POST['idmon'], $_POST['category'], $_POST['subcateg
     {
        $error_msg_hr .= '<p class="error">Horario fuera del establecido mayor a las 6:00 pm</p>';  
     }
+    if($hinicio<"07:00" or $hfin<"08:00")
+    {
+       $error_msg_hr .= '<p class="error">Horario fuera del establecido menor a las 6:00 am</p>';  
+    }
     
          $prep_stmt = "SELECT * FROM monitores where cedula = ? and monitores.laboratoristas_members_id = ? LIMIT 1";
          $stmt = $mysqli->prepare($prep_stmt);

@@ -94,8 +94,8 @@ Modificar de aki para abajo
    
    .form-container-tab
    {
-   min-width:auto;
-   width:auto;
+   min-width:100%;
+   width:100%;
    }
    
 .form-field

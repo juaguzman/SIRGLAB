@@ -140,7 +140,7 @@ static function verHorarios($cedu)
         include 'db_connect.php';
         $consulta= "SELECT dia, DATE_FORMAT(horaentra , '%T') as horaentra, DATE_FORMAT(horasale , '%T') as horasale FROM horarios WHERE monitores_cedula = $cedu";
         $result   = $mysqli->query($consulta);
-         echo "<table> \n";
+         echo "<table>";
          echo "<tr><td>HORAS</td><td>LUNES</td><td>MARTES</td><td>MIERCOLES</td><td>JUEVES</td><td>VIERNES</td></tr>";
       
          while ($campo=mysqli_fetch_object($result)) 
@@ -151,7 +151,8 @@ static function verHorarios($cedu)
              if($campo->dia=="Jueves"){$ejue = $campo->horaentra; $sjue = $campo->horasale;}
              if($campo->dia=="Viernes"){$evie = $campo->horaentra;$svie = $campo->horasale;}                
          }
-         
+         if(!empty($elun) or !empty($emar) or !empty($emier) or !empty($ejue) or !empty($ejue) or !empty($evie))
+         {
             echo "<tr><td>7:00 AM</td>";
             /*Comparacion para 7 am de el lunes*/
             if(isset($elun,$slun))
@@ -361,8 +362,14 @@ static function verHorarios($cedu)
             /*Comparacion para horas de el Viernes*/
             if(isset($evie,$svie))
             {if($svie==$h12){ echo "<td id=ok></td></tr>"; } else { echo "<td></td></tr>";}}else { echo "<td></td></tr>";}
-            
-            
+            echo "</table>";
+         }
+        else {
+         echo "</table>";
+         echo "<form method=POST action=regHorario.php>";
+         echo "<input type=hidden name=idm value=$cedu>";
+         echo "<input type=submit value=Agregar Horario class=btn-style></form>";
+             }
   }
         
 
