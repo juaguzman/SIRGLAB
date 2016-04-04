@@ -36,5 +36,15 @@ if(isset($_REQUEST['req']))
      formularios::finpr($id,$obsercor,$obserdos);
      
     break;
+    case "asign":
+         if(isset($_REQUEST['prog'],$_POST['labor']))
+     {
+       $lab = $_REQUEST['labor'];
+       
+       $progs = $_POST['prog'];
+    
+     }
+     
+    break;
     }
 }

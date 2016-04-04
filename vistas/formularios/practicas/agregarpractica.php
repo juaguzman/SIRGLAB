@@ -156,7 +156,7 @@ sec_session_start();
                 <tr>
                     <td colspan="2">
                 <div class="submit-container">
-                    <input type="hidden" name="rsp" value="agregar" />
+                    <input type="hidden" name="rsp" value="agregar" />                    
                     <input class="submit-button" type="submit" value="Agregar"/>
                 </div>
                     </td>
