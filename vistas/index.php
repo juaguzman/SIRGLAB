@@ -18,12 +18,6 @@ sec_session_start();
     <body>
         <?php if (login_check($mysqli) == true) : ?>
         <?php include './header.php';?>
-            <p>¡Bienvenido, <?php echo htmlentities($_SESSION['username']); ?>!</p>
-        <?php else : ?>
-            <p>
-                <span class="error">No está autorizado para acceder a esta página.</span> Please <a href="../index.php">login</a>.
-            </p>
-        <?php endif; ?>
             <div class="img1"  >
                 <img class="imge" src="../imagenes/alvernia.PNG">
             </div>    
@@ -32,7 +26,7 @@ sec_session_start();
                     <tbody>
                         <tr>
                             <td class="cont1">
-                                <a href="practicas.php"><img class="dentro" src="../imagenes/iconoPra.png"></a>
+                                <a href="formularios/practicas/index.php"><img class="dentro" src="../imagenes/iconoPra.png"></a>
                             </td>
                             <td class="cont1" >
                                 <a href="monitores.php"><img  class="dentro" src="../imagenes/iconoMon.png"></a>
@@ -44,5 +38,11 @@ sec_session_start();
                     </tbody>
                 </table>
             </div>
+        <?php else : ?>
+            <p>
+                <span class="error">No está autorizado para acceder a esta página.</span> Please <a href="../index.php">login</a>.
+            </p>
+        <?php endif; ?>
+           
     </body>
 </html>

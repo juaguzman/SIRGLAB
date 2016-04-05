@@ -57,6 +57,8 @@ else
                     <li> <a href="agregarprogramas.php">Agregar Programa</a> </li> <?php } ?>
                     <?php if($_SESSION['rol']=='admin') {?>
                     <li> <a href="agregarmaterias.php">Agregar Materias</a> </li> <?php } ?>
+                    <?php if($_SESSION['rol']=='admin') {?>
+                    <li> <a href="../admin/asignarproglab.php">Asignar Programas a Laboratorios</a> </li> <?php } ?>
                      <?php $id= $_SESSION['user_id'];?>
                    <?php if($_SESSION['rol']=='usua' or $_SESSION['rol']=='admin' ) {?>
                     <li> <a href="../laboratorista/datosLaboratorista.php">Perfil</a></li> <?php } ?> 

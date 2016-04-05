@@ -9,7 +9,7 @@ if (isset($_POST['nomPro'], $_POST['dirc']))
 {
     $nomP = filter_input(INPUT_POST, 'nomPro', FILTER_SANITIZE_STRING);
     $dir = filter_input(INPUT_POST, 'dirc', FILTER_SANITIZE_STRING);
-    $nomP = ucwords(strtolower($nomP));;
+    $nomP = ucwords(strtolower($nomP));
 
     $prep_stmt = "SELECT * FROM programa where nombre = ? LIMIT 1";
     $stmt = $mysqli->prepare($prep_stmt);

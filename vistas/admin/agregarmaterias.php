@@ -16,21 +16,22 @@ sec_session_start();
         <link rel="stylesheet" href="../../styles/main.css" />
         <link rel="stylesheet" href="../../styles/menu.css" />
         <link rel="stylesheet" href="../../styles/monitores_1.css" />
+        <link rel="stylesheet" href="../../styles/jquery-ui.css" />
         <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
         <script src="/resources/demos/external/jquery.bgiframe-2.1.2.js"></script>
         <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
         <script>
         $(function() {
-            $( "#dialog-message" ).dialog({
-              modal: true,
-              buttons: {
-                Ok: function() {
-                  $( this ).dialog( "close" );
-                }
-              }
-            });
-          });
-          </script>
+    $( "#dialog-message" ).dialog({
+      modal: true,
+      buttons: {
+        Ok: function() {
+          $( this ).dialog( "close" );
+        }
+      }
+    });
+  });
+  </script>
         <script type="text/javascript">
 
         icremento =1;
