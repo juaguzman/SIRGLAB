@@ -50,7 +50,9 @@ else
                <ul>
                      <?php if($_SESSION['rol']=='admin') {?>
                     <li> <a href="../admin/register2.php">Agregar Laboratorista</a> </li> <?php } ?>
-                     <?php if($_SESSION['rol']=='admin' or $_SESSION['rol']=='usua' ) {?>
+                     <?php if($_SESSION['rol']=='admin') {?>
+                    <li> <a href="../admin/agregarLaboratorio.php">Agregar Laboratorio</a> </li> <?php } ?>
+                    <?php if($_SESSION['rol']=='admin') {?>
                     <li><a href="../admin/agregarMonit.php">Agregar Monitores</a></li> <?php } ?>
                     <?php if($_SESSION['rol']=='admin') {?>
                     <li> <a href="../admin/agregarprogramas.php">Agregar Programa</a> </li> <?php } ?>
@@ -58,6 +60,10 @@ else
                     <li> <a href="../admin/agregarmaterias.php">Agregar Materias</a> </li> <?php } ?>
                     <?php if($_SESSION['rol']=='admin') {?>
                     <li> <a href="../admin/asignarproglab.php">Asignar Programas a Laboratorios</a> </li> <?php } ?>
+                    <?php if($_SESSION['rol']=='admin') {?>
+                    <li> <a href="../admin/verLaboratoristas.php">Ver Laboratorista</a> </li> <?php } ?>
+                    <?php if($_SESSION['rol']=='admin') {?>
+                    <li> <a href="../admin/verLabortorios.php">Ver Laboratorios</a> </li> <?php } ?>
                      <?php $id= $_SESSION['user_id'];?>
                     <?php if($_SESSION['rol']=='usua' or $_SESSION['rol']=='admin' ) {?>
                     <li> <a href="../laboratorista/datosLaboratorista.php">Perfil</a></li> <?php } ?> 

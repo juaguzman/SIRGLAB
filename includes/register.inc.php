@@ -3,12 +3,18 @@ include_once 'db_connect.php';
 include_once 'psl-config.php';
  
 $error_msg = "";
+$error_msg_cedu = "";
+$error_msg_usu = "";
+$error_msg_ema = "";
+$error_msg_psw = "";
 
-if (isset($_POST['cedu'],$_POST['username'], $_POST['email'], $_POST['p'])) 
+if (isset($_POST['cedu'],$_POST['username'], $_POST['email'], $_POST['p'], $_POST['name'], $_POST['apell'])) 
                 {
     // Sanear y validar los datos provistos.
     $estd = $_POST['rol'];
     $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
+    $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
+    $apell = filter_input(INPUT_POST, 'apell', FILTER_SANITIZE_STRING);
     $cedu = filter_input(INPUT_POST, 'cedu', FILTER_SANITIZE_NUMBER_INT);
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
     $email = filter_var($email, FILTER_VALIDATE_EMAIL);
@@ -16,7 +22,8 @@ if (isset($_POST['cedu'],$_POST['username'], $_POST['email'], $_POST['p']))
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) 
             {
         // No es un correo electrónico válido.
-        $error_msg .= '<p class="error">The email address you entered is not valid</p>';
+        $error_msg .= '<p class="error">el Correo electronico no es valido</p>';
+        $error_msg_ema .= '<p class="error">el Correo electronico no es valido</p>';
              }
  
     $password = filter_input(INPUT_POST, 'p', FILTER_SANITIZE_STRING);
@@ -24,7 +31,8 @@ if (isset($_POST['cedu'],$_POST['username'], $_POST['email'], $_POST['p']))
         {
         // La contraseña con hash deberá ser de 128 caracteres.
         // De lo contrario, algo muy raro habrá sucedido. 
-        $error_msg .= '<p class="error">Invalid password configuration.</p>';
+        $error_msg .= '<p class="error">Contraseña invalida o mal configurada.</p>';
+        $error_msg_psw .= '<p class="error">Contraseña invalida o mal configurada.</p>';
     }
  
     // La validez del nombre de usuario y de la contraseña ha sido verificada en el cliente.
@@ -46,6 +54,33 @@ if (isset($_POST['cedu'],$_POST['username'], $_POST['email'], $_POST['p']))
             {
             // Ya existe otro usuario con este correo electrónico.
             $error_msg .= '<p class="error">El correo electronico ya existe con otro usuario.</p>';
+            $error_msg_ema .= '<p class="error">El correo electronico ya existe con otro usuario.</p>';
+                        $stmt->close();
+                        
+        }
+            
+    } 
+    else 
+        {
+        $error_msg .= '<p class="error">error en la base de datos</p>';
+                $stmt->close();
+    }
+    
+    $prep_stmt = "SELECT id FROM members WHERE id  = ? LIMIT 1";
+    $stmt = $mysqli->prepare($prep_stmt);
+ 
+   // Verifica el correo electrónico existente.  
+    if ($stmt) 
+        {
+        $stmt->bind_param('s', $cedu);
+        $stmt->execute();
+        $stmt->store_result();
+ 
+        if ($stmt->num_rows == 1) 
+            {
+            // Ya existe otro usuario con este correo electrónico.
+            $error_msg .= '<p class="error">La identificacion ya existe.</p>';
+            $error_msg_cedu .= '<p class="error">La identificacion ya existe.</p>';
                         $stmt->close();
                         
         }
@@ -71,6 +106,8 @@ if (isset($_POST['cedu'],$_POST['username'], $_POST['email'], $_POST['p']))
                 {
                         // Ya existe otro usuario con este nombre de usuario.
                         $error_msg .= '<p class="error">Ya existe otro usuario con este nombre de usuario.</p>';
+                        $error_msg_usu .= '<p class="error">Ya existe otro usuario con este nombre de usuario.</p>';
+                        
                         
                 }
                 
@@ -106,17 +143,18 @@ if (isset($_POST['cedu'],$_POST['username'], $_POST['email'], $_POST['p']))
             }
         else 
         {
-           if ($insert_stmt = $mysqli->prepare("INSERT INTO laboratoristas (members_id) VALUE (?)")) 
+           if ($insert_stmt = $mysqli->prepare("INSERT INTO laboratoristas (members_id, nombres, apellidos ) VALUE (?, ?, ?);")) 
         {
-            $insert_stmt->bind_param('s', $cedu);
+            $insert_stmt->bind_param('sss', $cedu, $name, $apell);
             // Ejecuta la consulta preparada.
             if (! $insert_stmt->execute())
             {
-                header('Location: ../error.php?err=Registration failure: INSERT');
+                header('Location: ../error.php?err=Registration failure lab: INSERT');
             }
+            echo "<div id=dialog-message title=Cordinadores > <p> Cordinador Agregado Correctamente </p></div>";
         } 
         }
-        header('Location: ./register_success.php');
+        
         }
        
     }

@@ -12,6 +12,7 @@ sec_session_start();
         <title>Inicio de sesión segura: Página protegida</title>
         <link rel="stylesheet" href="../styles/main.css" />
         <link rel="stylesheet" href="../styles/menu.css" />
+        <link rel="stylesheet" href="../styles/monitores_1.css" />
  
     </head>
     

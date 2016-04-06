@@ -15,6 +15,14 @@ if(isset($_REQUEST['req']))
        header('Location: ../vistas/formularios/practicas/finprectobs.php?id='.$id);
      }
     break;
+    case "ver":
+     if(isset($_REQUEST['id']))
+     {
+       $id = $_REQUEST['id'];
+       
+       header('Location: ../vistas/formularios/practicas/verpract.php?id='.$id);
+     }
+    break;
     case "fin":
          if(isset($_REQUEST['id']))
      {

@@ -47,7 +47,7 @@ sec_session_start();
         <div class="form-title">Laboratorio <?php if (!empty($error_msg_lab)) { echo $error_msg_lab;} ?></div>
        <?php
        $id = $_SESSION['user_id'];
-           formularios::sallabor($id);?>
+           formularios::sallaborTot();?>
         <div class="form-title">Programas <?php if (!empty($error_msg_prog)) { echo $error_msg_prog;} ?></div>
         <?php
            programa::ckeProg();
