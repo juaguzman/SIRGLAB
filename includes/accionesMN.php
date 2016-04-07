@@ -72,7 +72,8 @@ static function ListarMonitores()
                        $estado = "Activo";
                     }
                                        
-            echo "<tr><td>$campo->cedula</td><td>$campo->nombres</td><td>$campo->apellidos</td><td>$campo->celular</td><td>$campo->email</td><td>$campo->programa</td><td>$campo->semestre</td><td>$estado</td><td><a href=verHorarios.php?cedu=$campo->cedula><img src=../../imagenes/iconos/horario.png width=30px heigt=30px ></a></td>";
+            echo "<tr><td>$campo->cedula</td><td>$campo->nombres</td><td>$campo->apellidos</td><td>$campo->celular</td><td>$campo->email</td><td>$campo->programa</td><td>$campo->semestre</td><td>$estado</td><td><a href=verHorarios.php?cedu=$campo->cedula><img src=../../imagenes/iconos/horario.png width=30px heigt=30px ></a>&nbsp;&nbsp;&nbsp;"
+                    . "<a href=registromonitores.php?cedu=$campo->cedula><img src=../../imagenes/iconos/ver.png width=30px heigt=30px ></a></td>";
                 }
         echo "<tbody>";
         echo "</table> \n";
@@ -371,6 +372,127 @@ static function verHorarios($cedu)
          echo "<input type=submit value=Agregar Horario class=btn-style></form>";
              }
   }
+  
+  
+   static function ListarMonitorRegistro($idm)
+{
+    
+        
+        include 'db_connect.php';
+        $horas = "0:00:00";
+        $horasp ="";
+        $sumHoras="0:00:00";
+        $sumh="";
+        $summ="";
+        $sums="";
+        $resh="";
+        $resm="";
+        $ress="";
+        
+   $prep_stmt = "SELECT * FROM monitores WHERE cedula = ? LIMIT 1";
+    $stmt = $mysqli->prepare($prep_stmt);
+    
+   
+    if ($stmt) 
+        {
+        $stmt->bind_param('s', $idm);
+        $stmt->execute();
+        $stmt->store_result(); 
+        // Obtiene las variables del resultado.
+        $stmt->bind_result($cedula, $nombres, $apellidos,$celular,$email,$programa,$semetre, $estado,$idlabora);
+        $stmt->fetch(); 
+        if ($stmt->num_rows ==1) 
+            {
+             if($estado=="dn"){$std= "ACTIVO";}else{$std= "INACTIVO";};
+             echo "<table> \n";
+             echo "<thead>";
+             echo "<tr><td colspan=8>Registro de Horas Monitor</td></tr>";
+             echo "<thead>";
+             echo "<tbody><tr><td colspan=8></td></tr>";
+             echo "<tr><td>Cedula</td><td>$cedula</td><td colspan=4> </td><td>Estado</td><td>$std</td></tr>";
+             echo "</tbody>";
+             echo "</table> \n";
+             echo "<table> \n";
+              echo "<tr><td colspan=8></td></tr>";
+             echo "<tr><td colspan=2>Nombres:</td><td colspan=2>$nombres</td><td colspan=2 >Apellidos:</td><td colspan=2 >$apellidos</td></tr>";
+             echo "<tr><td colspan=2>Celular:</td><td colspan=2>$celular</td><td colspan=2>Email:</td><td colspan=2>$email</td></tr>";
+             echo "<tr><td colspan=2>Programa:</td><td colspan=2>$programa</td><td colspan=2>Semestre:</td><td colspan=2>$semetre</td></tr>";
+             echo "</table> \n";
+//             echo "<br/><br/>";
+             
+                  $consulta= "SELECT mregistro.* FROM mregistro WHERE mregistro.monitores_cedula = $cedula ";
+                  $result   = $mysqli->query($consulta);
+              
+                echo "<table> \n";
+                echo "<thead>";
+                echo "<tr><td colspan=9>Registro de Horas</td></tr>";
+                echo "<thead>";
+                echo "<tbody>";
+                echo "<tr><td>&nbsp;FECHA&nbsp;</td><td>&nbsp;HORA ENTRADA&nbsp;</td><td>&nbsp;HORA SALIDA&nbsp;</td><td >&nbsp;HORAS REALIZADAS&nbsp;</td></tr> \n";
+                
+                 while ($campo=mysqli_fetch_object($result))
+                 {
+                   $hini = $campo->horaen;
+                   $hfin=$campo->horasal;
+                   if(empty($hfin))
+                   {
+                       $horas="Sin Finalizar";
+                   }
+                   else 
+                   {
+                       $horai = explode(":", $hini);
+                       $horas = explode(":", $hfin);
+                       list($hini,$minin,$segin)=$horai;
+                       list($hsal,$minsa,$segsa)=$horas;
+                       $resh=0;
+                       $resm=0;
+                       $ress=0;
+                       $ress=$segsa-$segin;
+                       $resh = $hsal-$hini;
+                       $resm = $minsa-$minin;
+                       if($ress<0)
+                       {
+                           $resm--;
+                           $ress=$ress+59;
+                           
+                       }
+                       
+                        if($resm<0)
+                       {
+                           $resh--;
+                           $resm=$resm+59;
+                           
+                       }
+                       
+                     $horasp = "$resh:$resm:$ress" ; 
+                     $horas=date("H:i:s", strtotime("00:00:00") + strtotime($hfin) - strtotime($hini) );
+                     $horaSplit = explode(":", $horasp);
+                   list($hour1, $min1, $sec1)=$horaSplit;
+                  
+                   $sums = $sums+$sec1;                   
+                   if($sums>59)
+                   {
+                       $summ++;
+                       $sums=$sums-59;
+                   }
+                   $summ = $summ+$min1;
+                   if($summ>59)
+                   {
+                       $sumh++;
+                       $summ=$summ-59;
+                   }
+                    $sumh = $sumh+$hour1;
+                   }
+                   echo "<tr> <td>$campo->fecha</td><td>$campo->horaen</td><td>$campo->horasal</td><td>$horasp</td> </tr>";
+                 }
+                 $sumHoras = "$sumh:$summ:$sums";
+                 echo "<tr><td colspan=3 >Total de Horas</td><td>$sumHoras Horas</td></tr>";
+            
+            }
+        
+        }    
+            
+        } 
         
 
 }

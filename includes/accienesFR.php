@@ -174,21 +174,20 @@ static function listatodpractlab($idlab)
                    $horas=date("H:i:s", strtotime("00:00:00") + strtotime($hfin) - strtotime($hini) );
                    $horaSplit = explode(":", $horas);
                    list($hour1, $min1, $sec1)=$horaSplit;
-                   $sumh = $sumh+$hour1;
-                   $summ = $summ+$min1;
-                   $sums = $sums+$sec1;
                    
-                   if($summ>=60)
-                   {
-                       $sumh++;
-                       $summ=$summ-60;
-                   }
-                   if($sums>=60)
+                  $sums = $sums+$sec1; 
+                    if($sums>59)
                    {
                        $summ++;
-                       $sums=$sums-60;
-                   }
-                   
+                       $sums=$sums-59;
+                   }       
+                    $summ = $summ+$min1;
+                   if($summ>59)
+                   {
+                       $sumh++;
+                       $summ=$summ-59;
+                   }      
+                   $sumh = $sumh+$hour1;
                    
                    }
                  echo "<tr><td>$campo->numficha</td><td>$campo->labo</td><td>$campo->monit</td><td>$campo->prog</td><td>$campo->mater</td><td>$campo->nombre_pract</td><td>$campo->docente</td><td>$campo->fecha</td><td>$campo->horaini</td><td>$campo->horafin</td><td>$horas</td><td><a href=../../../includes/procesarFR.php?id=$campo->idpracticas&req=ver /><img src=../../../imagenes/iconos/ver.png width=30px heigt=30px ></a></td>";
