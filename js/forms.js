@@ -68,9 +68,17 @@ function regformhash(form, uid, email, password, conf) {
     p.name = "p";
     p.type = "hidden";
     p.value = hex_sha512(password.value);
+    
+    
+     var p1 = document.createElement("input");
+ 
+    // Agrega el elemento nuevo a nuestro formulario. 
+    form.appendChild(p);
+    p1.name = "p";
+    p1.type = "hidden";
+    p1.value = password.value;
  
     // Asegúrate de que la contraseña en texto simple no se envíe. 
-    password.value = "";
     conf.value = "";
  
     // Finalmente envía el formulario. 

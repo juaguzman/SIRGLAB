@@ -18,6 +18,7 @@ if (isset($_POST['cedu'],$_POST['username'], $_POST['email'], $_POST['p'], $_POS
     $cedu = filter_input(INPUT_POST, 'cedu', FILTER_SANITIZE_NUMBER_INT);
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
     $email = filter_var($email, FILTER_VALIDATE_EMAIL);
+    $psw = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
     
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) 
             {
@@ -54,7 +55,7 @@ if (isset($_POST['cedu'],$_POST['username'], $_POST['email'], $_POST['p'], $_POS
             {
             // Ya existe otro usuario con este correo electrónico.
             $error_msg .= '<p class="error">El correo electronico ya existe con otro usuario.</p>';
-            $error_msg_ema .= '<p class="error">El correo electronico ya existe con otro usuario.</p>';
+            $error_msg_ema .= '<p class="error">El correo electronico ya existe.</p>';
                         $stmt->close();
                         
         }
@@ -106,7 +107,7 @@ if (isset($_POST['cedu'],$_POST['username'], $_POST['email'], $_POST['p'], $_POS
                 {
                         // Ya existe otro usuario con este nombre de usuario.
                         $error_msg .= '<p class="error">Ya existe otro usuario con este nombre de usuario.</p>';
-                        $error_msg_usu .= '<p class="error">Ya existe otro usuario con este nombre de usuario.</p>';
+                        $error_msg_usu .= '<p class="error">El usuario ya existe.</p>';
                         
                         
                 }
@@ -143,9 +144,9 @@ if (isset($_POST['cedu'],$_POST['username'], $_POST['email'], $_POST['p'], $_POS
             }
         else 
         {
-           if ($insert_stmt = $mysqli->prepare("INSERT INTO laboratoristas (members_id, nombres, apellidos ) VALUE (?, ?, ?);")) 
+           if ($insert_stmt = $mysqli->prepare("INSERT INTO laboratoristas (members_id, nombres, apellidos,email,contra ) VALUE (?, ?, ?, ?, ?);")) 
         {
-            $insert_stmt->bind_param('sss', $cedu, $name, $apell);
+            $insert_stmt->bind_param('sssss', $cedu, $name, $apell,$email,$psw);
             // Ejecuta la consulta preparada.
             if (! $insert_stmt->execute())
             {

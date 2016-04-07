@@ -59,11 +59,11 @@ else
                     <?php if($_SESSION['rol']=='admin') {?>
                     <li> <a href="../../admin/agregarmaterias.php">Agregar Materias</a> </li> <?php } ?>
                     <?php if($_SESSION['rol']=='admin') {?>
-                    <li> <a href="../admin/asignarproglab.php">Asignar Programas a Laboratorios</a> </li> <?php } ?>
+                    <li> <a href="../../admin/asignarproglab.php">Asignar Programas a Laboratorios</a> </li> <?php } ?>
                     <?php if($_SESSION['rol']=='admin') {?>
-                    <li> <a href="../admin/verLaboratoristas.php">Ver Laboratorista</a> </li> <?php } ?>
+                    <li> <a href="../../admin/verLaboratoristas.php">Ver Laboratorista</a> </li> <?php } ?>
                     <?php if($_SESSION['rol']=='admin') {?>
-                    <li> <a href="../admin/verLabortorios.php">Ver Laboratorios</a> </li> <?php } ?>
+                    <li> <a href="../../admin/verLabortorios.php">Ver Laboratorios</a> </li> <?php } ?>
                      <?php $id= $_SESSION['user_id'];?>
                     <?php if($_SESSION['rol']=='usua' or $_SESSION['rol']=='admin' ) {?>
                     <li> <a href="../../laboratorista/datosLaboratorista.php">Perfil</a></li> <?php } ?> 

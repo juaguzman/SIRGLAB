@@ -63,9 +63,9 @@ sec_session_start();
              <div class="form-title"><h2>Agregar Laboratorista</h2></div>
               <div class="form-title">Cedula <?php if (!empty($error_msg_cedu)) { echo $error_msg_cedu;} ?> </div>
               <input class="form-field" type="number" name="cedu" id="cedu" required/><br>
-               <div class="form-title">Nombres <?php if (!empty($error_msg_usu)) { echo $error_msg_usu;} ?></div> 
+               <div class="form-title">Nombres </div> 
                <input class="form-field" type='text'name='name' id='name' required="" maxlength="45" /><br>
-               <div class="form-title">Apellidos <?php if (!empty($error_msg_usu)) { echo $error_msg_usu;} ?></div> 
+               <div class="form-title">Apellidos</div> 
                <input class="form-field" type='text'name='apell' id='apell' required="" maxlength="45" /><br>
             <div class="form-title">Nombre de usuario <?php if (!empty($error_msg_usu)) { echo $error_msg_usu;} ?></div> 
             <input class="form-field" type='text'name='username' id='username' required="" /><br>
