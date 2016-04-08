@@ -76,8 +76,8 @@ function login($email, $password, $mysqli)
                                                                 $username);
                     $_SESSION['username'] = $username;
                     $_SESSION['rol'] = $rol;
-                    $_SESSION['login_string'] = hash('sha512', 
-                              $password . $user_browser);
+                    $_SESSION['login_string'] = hash('sha512',$password . $user_browser);
+                    $_SESSION['reconf']==FALSE;
                     // Inicio de sesión exitoso
                     return true;
                 } 

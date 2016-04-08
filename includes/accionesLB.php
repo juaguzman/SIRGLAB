@@ -61,35 +61,19 @@ class laboratorista
         $stmt->fetch(); 
         if ($stmt->num_rows ==1) 
             {
-            
+            echo "<table><thead><tr><td colspan=3>Perfil Cordinador de Laboratorio</td></tr></thead>";
+            echo "<tbody><tr><td colspan=3></td></tr>";
+            echo "<tr><td colspan=2>Cedula</td><td>$cedula</td></tr>";
+            echo "</table>";
             }
          
-         
-        $consulta= "SELECT * FROM laboratoristas" ;        
-        if($result   = $mysqli->query($consulta))
-        {
-           
-        echo "<table> \n";
-        echo "<thead>";
-        echo "<tr><td colspan=9>Lista de Laboratoristas</td></tr>";
-        echo "<thead>";
-        echo "<tr><td>&nbsp;Cedula&nbsp;</td>"
-                . "<td>&nbsp;Nombres&nbsp;</td><td>&nbsp;Apellidos&nbsp;</td>"
-                . "<td>&nbsp;Celular&nbsp;</td><td>&nbsp;Direccion&nbsp;</td>"
-                . "<td >&nbsp;OPCIONES&nbsp;</td></tr> \n";
-        
-            while ($campo=mysqli_fetch_object($result)) 
-            {
-                echo "<tr><td>$campo->members_id</td><td>$campo->nombres</td><td>$campo->apellidos</td><td>$campo->celular</td><td>$campo->direccion</td>"
-                    . "<td><img src=../../imagenes/iconos/horario.png width=30px heigt=30px ></td>";
-            }  
-             echo "</table> \n";
-        $mysqli->close();
-        }
-        else 
-        {
-           echo "no existe un perfil";   
-        }
-    }
+        }     
+    }  
     
+    
+    static function conpassw()
+    {
+        echo "Bienvinido";
+        echo "<form><input type=text name=pasw value='' >";
+    }
 }
