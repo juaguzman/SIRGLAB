@@ -61,10 +61,23 @@ class laboratorista
         $stmt->fetch(); 
         if ($stmt->num_rows ==1) 
             {
-            echo "<table><thead><tr><td colspan=3>Perfil Cordinador de Laboratorio</td></tr></thead>";
-            echo "<tbody><tr><td colspan=3></td></tr>";
-            echo "<tr><td colspan=2>Cedula</td><td>$cedula</td></tr>";
+            echo "<div class=form-title><h2>Registro y Control de Practicas</h2></div><br/>";
+            echo " <table class=form-container-tab>";
+            echo "<tr><td>";
+            echo "<div class=form-title>Cedula</div>";
+            echo "<input class=form-field type=text readonly value=$cedula name=cordinador maxlength=10 required />";
+            echo "</td></tr>";
+            echo "<tr><td>";
+            echo "<div class=form-title>Nombre</div>";
+            echo "<input class=form-field type=text readonly value=$nombres name=cordinador maxlength=10 required />";
+            echo "</td>";
+            echo "<td>";
+            echo "<div class=form-title>Apellidos</div>";
+            echo "<input class=form-field type=text readonly value=$apellidos name=cordinador maxlength=10 required />";
+            echo "</td>";
+            echo "</tr>";
             echo "</table>";
+            
             }
          
         }     
@@ -73,7 +86,6 @@ class laboratorista
     
     static function conpassw()
     {
-        echo "Bienvinido";
-        echo "<form><input type=text name=pasw value='' >";
+
     }
 }

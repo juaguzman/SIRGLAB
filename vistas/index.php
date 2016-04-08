@@ -30,7 +30,7 @@ sec_session_start();
                                 <a href="formularios/practicas/index.php"><img class="dentro" src="../imagenes/iconoPra.png"></a>
                             </td>
                             <td class="cont1" >
-                                <a href="monitores.php"><img  class="dentro" src="../imagenes/iconoMon.png"></a>
+                                <a href="monitores/index.php"><img  class="dentro" src="../imagenes/iconoMon.png"></a>
                             </td>
                             <td class="cont1 ">
                                 <a href="investigacion.php"><img  class="dentro" src="../imagenes/iconoInv.png"></a>

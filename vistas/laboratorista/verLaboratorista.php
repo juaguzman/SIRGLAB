@@ -12,7 +12,7 @@ sec_session_start();
         <title>Inicio de sesión segura: Página protegida</title>
         <link rel="stylesheet" href="../../styles/main.css" />
         <link rel="stylesheet" href="../../styles/menu.css" />
-        <link rel="stylesheet" href="../../styles/tabla.css" />
+            <link rel="stylesheet" href="../../styles/formularios.css" />
         
  
     </head>
@@ -20,15 +20,13 @@ sec_session_start();
     <body>
         <?php if (login_check($mysqli) == true) : ?>
         <?php include './header.php';?>
-            <div class="CSSTableGenerator">
+            <div id="monadd">
            <?php 
-           $band = $_SESSION['reconf'];
-           if($band == TRUE)
-               {
+           
            
                 $id = $_SESSION['user_id'];
                 laboratorista::verPerfil($id);
-                }          ?>
+            ?>
             
             </div>    
         <?php else : ?>

@@ -77,7 +77,7 @@ function login($email, $password, $mysqli)
                     $_SESSION['username'] = $username;
                     $_SESSION['rol'] = $rol;
                     $_SESSION['login_string'] = hash('sha512',$password . $user_browser);
-                    $_SESSION['reconf']==FALSE;
+                    $_SESSION['reconf']=FALSE;
                     // Inicio de sesión exitoso
                     return true;
                 } 
@@ -140,6 +140,7 @@ function login_check($mysqli) {
         $user_id = $_SESSION['user_id'];
         $login_string = $_SESSION['login_string'];
         $username = $_SESSION['username'];
+        $band=$_SESSION['reconf'];
  
         // Obtiene la cadena de agente de usuario del usuario.
         $user_browser = $_SERVER['HTTP_USER_AGENT'];
