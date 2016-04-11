@@ -61,26 +61,66 @@ class laboratorista
         $stmt->fetch(); 
         if ($stmt->num_rows ==1) 
             {
-            echo "<div class=form-title><h2>Registro y Control de Practicas</h2></div><br/>";
+            if(empty($email))
+            {
+                $email= "Sin&nbsp;Informacion";
+            }
+            if(empty($celular))
+            {
+                $celular= "Sin&nbsp;Informacion";
+            }
+            echo "<div class=form-title><h2>Perfil Cordinador de Laboratorios</h2></div><br/>";
             echo " <table class=form-container-tab>";
             echo "<tr><td>";
             echo "<div class=form-title>Cedula</div>";
-            echo "<input class=form-field type=text readonly value=$cedula name=cordinador maxlength=10 required />";
-            echo "</td></tr>";
+            echo "<input class=form-field type=text readonly value='$cedula' name=cordinador maxlength=10 required />";
+            echo "</td>";
+            echo "<td>";
+            echo "<div class=form-title>Email</div>";
+            echo "<input class=form-field type=text readonly maxlength=10 required value='$email'   />";
+            echo "</td>";
+            echo "</tr>";
+            /*
+             * Renglon desde aqui
+             */
             echo "<tr><td>";
             echo "<div class=form-title>Nombre</div>";
-            echo "<input class=form-field type=text readonly value=$nombres name=cordinador maxlength=10 required />";
+            echo "<input class=form-field type=text readonly value='$nombres' name=cordinador maxlength=10 required />";
             echo "</td>";
             echo "<td>";
             echo "<div class=form-title>Apellidos</div>";
-            echo "<input class=form-field type=text readonly value=$apellidos name=cordinador maxlength=10 required />";
+            echo "<input class=form-field type=text readonly value='$apellidos' name=cordinador maxlength=10 required />";
+            echo "</td>";
+            echo "</tr>";
+            /*
+             * Renglon desde aqui
+             */
+            echo "<tr><td>";
+            echo "<div class=form-title>Celular</div>";
+            echo "<input class=form-field type=text readonly value='$celular' name=cordinador maxlength=10 required />";
+            echo "</td>";
+            echo "<td>";
+            echo "<div class=form-title>Direccion</div>";
+            echo "<input class=form-field type=text readonly value='$direccion' name=cordinador maxlength=10 required />";
             echo "</td>";
             echo "</tr>";
             echo "</table>";
+            echo "<div>";
+            echo "<form>";
+            echo "<input type=hidden name=cedu value=$cedula >";
+            echo "<input type=hidden name=email value=$email >";
+            echo "<input type=hidden name=noms value=$nombres >";
+            echo "<input type=hidden name=apells value=$apellidos >";
+            echo "<input type=hidden name=celu value=$celular >";
+            echo "<input type=hidden name=cedu value=$direccion >";
+            echo "<input type=submit value=Actualizar class=btn-style>";
+            echo "</form>";
+            echo "</div>";
             
             }
          
-        }     
+        }
+      
     }  
     
     

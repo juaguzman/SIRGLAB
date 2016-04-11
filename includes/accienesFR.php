@@ -364,23 +364,7 @@ static function darPractica($id)
             echo "</form>";
             echo "</div>";
       $mysqli->close(); 
-    
-//    $prep_stmt1 = "SELECT * FROM practicas WHERE idpracticas = ? LIMIT 1";
-//        $stmt1 = $mysqli->prepare($prep_stmt1);
-//        if ($stmt1) 
-//           {
-//            $stmt1->bind_param('s', $id);
-//            $stmt1->execute();
-//            $stmt1->store_result(); 
-//            // Obtiene las variables del resultado.
-//            $stmt1->bind_result($idpractica,$nombre_pract ,$docente, $guia,
-//                    $numgrup,$numestudiantes,$obsdocente,$obscordinador,
-//                    $laboratoristas_members_id,$laboratorios_idlaboratorios,
-//                    $monitores_cedula,$materias_idmaterias,$programa_idprograma,
-//                    $horapl,$horaini,$horaplfn,$horafin,$fecha,$estado,$numficha);                    
-//            $stmt1->fetch();
-//           }
-    
+
 }
 
 static function darPracticas($id)
@@ -433,7 +417,7 @@ static function darPracticas($id)
            }
                 
             echo "</tbody>";
-            echo "</table> \n";
+            echo "</table> \n";           
             echo "</div>";
       $mysqli->close(); 
 
