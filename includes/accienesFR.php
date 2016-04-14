@@ -179,13 +179,13 @@ static function listatodpractlab($idlab)
                     if($sums>59)
                    {
                        $summ++;
-                       $sums=$sums-59;
+                       $sums=$sums-60;
                    }       
                     $summ = $summ+$min1;
                    if($summ>59)
                    {
                        $sumh++;
-                       $summ=$summ-59;
+                       $summ=$summ-60;
                    }      
                    $sumh = $sumh+$hour1;
                    

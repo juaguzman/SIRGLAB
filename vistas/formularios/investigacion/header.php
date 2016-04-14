@@ -20,16 +20,16 @@ else
     <div id='cssmenu'>
         <ul id="menu-bar">
             <li ><a href="../../index.php">Inicio</a></li>
-            <li class="active" ><a href="#">Practicas</a>
+            <li  ><a href="#">Practicas</a>
                  <ul>
-                    <li><a href="agregarpractica.php">Agregar Practica</a></li>
-                     <li><a href="finpractica.php">Finalizar Practica</a></li>
-                      <li><a href="listarpracticascord.php">Ver Practicas</a></li>
+                     <li><a href="../practicas/agregarpractica.php">Agregar Practica</a></li>
+                     <li><a href="../practicas/finpractica.php">Finalizar Practica</a></li>
+                     <li><a href="../practicas/listarpracticascord.php">Ver Practicas</a></li>
                  </ul>
             </li>
-            <li><a href="#">Investigacion</a>
+            <li class="active" ><a href="#">Investigacion</a>
                 <ul>
-                    <li><a href="../investigacion/agregarinvstigacion.php">Agregar Investigacion</a></li>
+                    <li><a href="agregarinvstigacion.php">Agregar Investigacion</a></li>
                 </ul>
             </li>
             <li ><a>Monitores</a>

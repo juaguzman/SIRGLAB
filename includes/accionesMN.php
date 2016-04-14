@@ -436,7 +436,8 @@ static function verHorarios($cedu)
                    $hfin=$campo->horasal;
                    if(empty($hfin))
                    {
-                       $horas="Sin Finalizar";
+                       $hfin="Sin Finalizar";
+                       $horasp="Sin Finalizar";
                    }
                    else 
                    {
@@ -453,14 +454,14 @@ static function verHorarios($cedu)
                        if($ress<0)
                        {
                            $resm--;
-                           $ress=$ress+59;
+                           $ress=$ress+60;
                            
                        }
                        
                         if($resm<0)
                        {
                            $resh--;
-                           $resm=$resm+59;
+                           $resm=$resm+60;
                            
                        }
                        
@@ -473,17 +474,17 @@ static function verHorarios($cedu)
                    if($sums>59)
                    {
                        $summ++;
-                       $sums=$sums-59;
+                       $sums=$sums-60;
                    }
                    $summ = $summ+$min1;
                    if($summ>59)
                    {
                        $sumh++;
-                       $summ=$summ-59;
+                       $summ=$summ-60;
                    }
                     $sumh = $sumh+$hour1;
                    }
-                   echo "<tr> <td>$campo->fecha</td><td>$campo->horaen</td><td>$campo->horasal</td><td>$horasp</td> </tr>";
+                   echo "<tr> <td>$campo->fecha</td><td>$campo->horaen</td><td>$hfin</td><td>$horasp</td> </tr>";
                  }
                  $sumHoras = "$sumh:$summ:$sums";
                  echo "<tr><td colspan=3 >Total de Horas</td><td>$sumHoras Horas</td></tr>";

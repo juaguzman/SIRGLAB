@@ -15,6 +15,7 @@ if (! $error)
     </head>
     <body>
         <h1>Hubo un problema.</h1>
-        <p class="error"><?php echo $error; ?></p>  
+        <p class="error"><?php echo $error; ?></p> 
+        <h2>Comuniquese con el administrador del sisitema</h2>
     </body>
 </html>

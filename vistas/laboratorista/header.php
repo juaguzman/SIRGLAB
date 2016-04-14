@@ -31,7 +31,7 @@ else
             </li>
             <li><a href="#">Investigacion</a>
                 <ul>
-                    <li><a href="#">Services Sub Menu 1</a></li>
+                    <li><a href="../formularios/investigacion/agregarinvstigacion.php">Agregar Investigacion</a></li>
                 </ul>
             </li>
             <li ><a>Monitores</a>
@@ -41,14 +41,14 @@ else
                     <li><a href="../monitores/asignarmonitores.php">Asignar Monitores</a></li>
                 </ul>
             </li>
-            <li class="active"><a href="#">Empleados</a>
+            <li ><a href="#">Empleados</a>
                 <ul>
                     <li><a href="../empleados/listarEmpleados.php">Ver Empleados</a></li>        
                 </ul>
             </li>
             <li><a href="#">Contact Us</a></li>
             <div id="nomses">
-            <li id="nomses"><a href="#">¡Bienvenido, <?php if (isset($_GET['error'])){echo '<p class="error">Error Logging In!</p>';}else {echo htmlentities($_SESSION['username']);}?> !</a>
+            <li id="nomses" class="active"><a href="#">¡Bienvenido, <?php if (isset($_GET['error'])){echo '<p class="error">Error Logging In!</p>';}else {echo htmlentities($_SESSION['username']);}?> !</a>
                 <ul>
                      <?php if($_SESSION['rol']=='admin') {?>
                     <li> <a href="../admin/register2.php">Agregar Laboratorista</a> </li> <?php } ?>
@@ -68,7 +68,7 @@ else
                     <li> <a href="../admin/verLabortorios.php">Ver Laboratorios</a> </li> <?php } ?>
                      <?php $id= $_SESSION['user_id'];?>
                     <?php if($_SESSION['rol']=='admin' or $_SESSION['rol']=='admin' ) {?>
-                    <li> <a href="../laboratorista/datosLaboratorista.php">Perfil</a></li> <?php } ?> 
+                    <li> <a href="../laboratorista/verLaboratorista.php">Perfil</a></li> <?php } ?> 
                     <li><a href="../../includes/logout.php">Salir</a></li>  
                 </ul>
             </li>

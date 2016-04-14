@@ -31,7 +31,7 @@ else
             </li>
             <li><a href="#">Investigacion</a>
                 <ul>
-                    <li><a href="#">Services Sub Menu 1</a></li>
+                    <li><a href="formularios/investigacion/agregarinvstigacion.php">Agregar Investigacion</a></li>
                 </ul>
             </li>
             <li><a href="#">Monitores</a>
@@ -62,7 +62,7 @@ else
                     <li> <a href="admin/agregarmaterias.php">Agregar Materias</a> </li> <?php } ?>
                      <?php $id= $_SESSION['user_id'];?>
                    <?php if($_SESSION['rol']=='usua' or $_SESSION['rol']=='admin' ) {?>
-                    <li> <a href="laboratorista/datosLaboratorista.php">Perfil</a></li> <?php } ?> 
+                    <li> <a href="laboratorista/verLaboratorista.php">Perfil</a></li> <?php } ?> 
                     <li><a href="../includes/logout.php">Salir</a></li>  
                 </ul>
             </li>

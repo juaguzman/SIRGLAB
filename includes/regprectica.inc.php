@@ -87,6 +87,8 @@ if (isset($_POST['idcord'],$_POST['idmon'], $_POST['category'], $_POST['subcateg
             $error_msg .= '<p class="error">Database error line 55</p>';
             $stmt->close();
         }
+        
+        
          $prep_stmt = "SELECT * FROM programa where idprograma = ? LIMIT 1";
          $stmt = $mysqli->prepare($prep_stmt);
      // Verifica si selecciono un monitor.  

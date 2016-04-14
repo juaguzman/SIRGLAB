@@ -47,7 +47,7 @@ sec_session_start();
                 <div class="submit-container">
                     <?php $id = $_SESSION['user_id']?>
                     <input type="hidden" name="idlab" value="<?php echo $id;?>" />
-                    <input class="submit-button" type="submit" value="Iniciar"/>
+                    <input class="submit-button" type="submit" value="Marcar"/>
                 </div>
                 </form>
        </div>
