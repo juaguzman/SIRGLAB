@@ -30,6 +30,7 @@ else
             <li><a href="#">Investigacion</a>
                 <ul>
                     <li><a href="../investigacion/agregarinvstigacion.php">Agregar Investigacion</a></li>
+                    <li><a href="../investigacion/fininvestig.php">Fin Investigacion</a></li>
                 </ul>
             </li>
             <li ><a>Monitores</a>

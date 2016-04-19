@@ -117,7 +117,7 @@ static function listapracticaactiva($idlab)
         echo "<tr><td>&nbsp;NUM PRACTICA&nbsp;</td><td>&nbsp;LABORATORIO&nbsp;</td><td>&nbsp;MONITOR&nbsp;</td><td >&nbsp;PROGRAMA&nbsp;</td><td >&nbsp;MATERIA&nbsp;</td><td >&nbsp;PRACTICA&nbsp;</td><td >&nbsp;DOCENTE&nbsp;</td><td >&nbsp;FECHA&nbsp;</td><td >&nbsp;OPCIONES&nbsp;</td></tr> \n";
         while ($campo=mysqli_fetch_object($result)) 
                 {                      
-                 echo "<tr><td>$campo->idpracticas</td><td>$campo->labo</td><td>$campo->monit</td><td>$campo->prog</td><td>$campo->mater</td><td>$campo->nombre_pract</td><td>$campo->docente</td><td>$campo->fecha</td><td><a href=../../../includes/procesarFR.php?id=$campo->idpracticas&req=finp /><img src=../../../imagenes/iconos/stop.png width=30px heigt=30px ></a></td>";
+                 echo "<tr><td>$campo->numficha</td><td>$campo->labo</td><td>$campo->monit</td><td>$campo->prog</td><td>$campo->mater</td><td>$campo->nombre_pract</td><td>$campo->docente</td><td>$campo->fecha</td><td><a href=../../../includes/procesarFR.php?id=$campo->idpracticas&req=finp /><img src=../../../imagenes/iconos/stop.png width=30px heigt=30px ></a></td>";
                 }
         echo "</tbody></table> \n";
       $mysqli->close();        
@@ -359,13 +359,17 @@ static function darPractica($id)
             echo "</table> \n";
             echo "</div>";
             echo "<div>";
-            echo "<input type=hidden name=req value=fin >";
+            echo "<input type=hidden name=req value=terminap >";
             echo "<input type=submit value=Finalizar class=btn-style>";
             echo "</form>";
             echo "</div>";
       $mysqli->close(); 
 
 }
+
+/*
+ * muesta un listado de las practicas del cordinador de practicas sesion iniciada
+ */
 
 static function darPracticas($id)
 {
@@ -424,6 +428,9 @@ static function darPracticas($id)
     
 }
 
+/*
+ * asiga laboratorio a el cordinado de laboratorios
+ */
 static function asiglaborat()
 {
     include 'db_connect.php';
@@ -464,6 +471,254 @@ static function asiglaborat()
              
     
 }
+
+
+/*
+ * muesta las investigacion que estan en curso y que no an sido finalizadas
+ */
+static function listainvestigactiva($idlab)
+{
+    
+    include 'db_connect.php';
+        $consulta= "SELECT investigaciones.* , laboratorios.nombre as 'labo', monitores.nombres as 'monit'  FROM investigaciones, laboratorios, monitores WHERE investigaciones.laboratorios_idlaboratorios = laboratorios.idlaboratorios AND investigaciones.monitores_cedula = monitores.cedula AND investigaciones.laboratoristas_members_id = $idlab and investigaciones.estado = 'in';";
+        $result   = $mysqli->query($consulta);
+        echo "<table> \n";
+        echo "<thead><tr><td colspan=10>Listado de investigaciones activas</td></tr></thead>";
+        echo "<tbody> \n";
+        echo "<tr><td>&nbsp;NUM INVESTIGACION&nbsp;</td><td>&nbsp;LABORATORIO&nbsp;</td><td>&nbsp;NOMBRE DE LA INVESTIGACION&nbsp;</td><td >&nbsp;INVESTIGADOR&nbsp;</td><td >&nbsp;CEDULA INVESTIGADOR&nbsp;</td><td >&nbsp;MONITOR&nbsp;</td><td >&nbsp;DOCENTE&nbsp;</td><td >&nbsp;FECHA&nbsp;</td><td >&nbsp;OPCIONES&nbsp;</td></tr> \n";
+        while ($campo=mysqli_fetch_object($result)) 
+                {                      
+                 echo "<tr><td>$campo->numficha</td><td>$campo->labo</td><td>$campo->nombre_investg</td><td>$campo->investigador</td><td>$campo->cedulainvestg</td><td>$campo->monit</td><td>$campo->asesor</td><td>$campo->fecha</td><td><a href=../../../includes/procesarFR.php?id=$campo->idinvestigacion&req=fini /><img src=../../../imagenes/iconos/stop.png width=30px heigt=30px ></a></td>";
+                }
+        echo "</tbody></table> \n";
+      $mysqli->close();        
+            
+    
 }
 
-//        $msj="<div id=dialog-message title=Fin Dia> <p>acaba de marcar su salida</p></div>";            
+
+
+
+
+
+/*
+ * muesta la investigacion para terminarla y agregar las observaciones del cordinador, investigador y las condiciones de entrega de 
+ * equipos e insumos
+ */
+static function darInvestigacion($id)
+{
+    include 'db_connect.php';
+    
+        $consulta= "SELECT i.*, labs.nombre as 'laboratorio', cord.nombres as 'cordinador', monit.nombres as 'monitor' "
+                . "FROM investigaciones i "
+                . "INNER JOIN laboratoristas cord on (cord.members_id = i.laboratoristas_members_id) "
+                . "INNER JOIN laboratorios labs on (labs.idlaboratorios = i.laboratorios_idlaboratorios) "
+                . "INNER JOIN monitores monit on (monit.cedula = i.monitores_cedula) "
+                . "WHERE i.idinvestigacion = $id LIMIT 1";
+        $result   = $mysqli->query($consulta);
+        echo " <div class=CSSTableGenerator> ";
+        echo "<table>";
+        echo "<thead>";
+        echo "<tr>";
+        echo "<td  colspan=6 ><h2>REGISTRO Y CONTROL DE INVESTIGACIONES </h2> </td>";
+        echo "</tr>";
+        echo "</thead>";
+         echo "<tbody>";
+        echo "<tr>";
+        echo "<td colspan=6 ></td>";
+        echo "</tr>";
+       
+        while ($campo=mysqli_fetch_object($result)) 
+           {  
+            $id = $campo->idinvestigacion;
+            echo "<tr><td>Fecha:</td><td>$campo->fecha</td><td  colspan=2></td><td>Ficha numero:</td><td>$campo->numficha</td></tr>";
+            echo "<tr><td colspan=3 >Cordinador:</td><td colspan = 3>$campo->cordinador</td></tr>";
+            echo "<tr><td colspan=3 >Laboratorio:</td><td colspan = 3>$campo->laboratorio</td></tr>";
+            echo "<tr><td colspan=3 >Monitor:</td><td colspan = 3>$campo->monitor</td></tr>";
+            echo "<tr><td colspan=3 >Nombre de la investigacion:</td><td colspan = 3>$campo->nombre_investg</td></tr>";
+            echo "<tr><td colspan=3 >Nombre del investigador:</td><td colspan = 3>$campo->investigador</td></tr>";
+            echo "<tr><td colspan=3 >Cedula del investigador</td><td colspan = 3>$campo->cedulainvestg</td></tr>";
+            echo "<tr><td colspan=3 >Asesor de la investigacion</td><td colspan = 3>$campo->asesor</td></tr>";
+            echo "<tr><td colspan=6 ><table><thead><tr><td colspan=4>Horarios</td></tr></thead>";
+            echo "<tbody><tr><td colspan=4></td></tr>";
+            echo "<tr><td colspan=4>Horario</td></tr>";
+            echo "<tr><td>Hora inicio</td><td>Hora fin</td></tr>";
+            echo "<tr><td>$campo->horaini</td><td>$campo->horafin</td></tr>";
+            echo "</tbody><form method=POST action=../../../includes/procesarFR.php ></table></td></tr>";
+            $consulta2 ="SELECT equipo FROM equiposentre WHERE investigaciones_idinvestigacion = $campo->idinvestigacion;";
+            $result2   = $mysqli->query($consulta2);
+            $num = mysqli_num_rows($result2)+1;
+            $consulta3="SELECT * FROM inumosentre WHERE investigaciones_idinvestigacion = $campo->idinvestigacion;";
+            $result3   = $mysqli->query($consulta3);
+            $num2= mysqli_num_rows($result3)+1;
+            if($num>$num2)
+            {
+                $row=$num+1;
+            }
+            else
+            {
+                $row=$num2+1;
+            }
+            echo "<tr><td colspan=6 ><table><thead><tr><td colspan=6>Equips e Insumos utilizados</td></tr></thead>";
+            echo '<tbody><tr><td colspan=3></td></tr>';
+            echo "<tr>";
+            echo "<td>";
+                    echo "<table><thead><tr><td colspan=2 >Equipos</td></thead></tr>";
+                     echo "<tr><tbody><td>Numero</td><td>Equipos</td></tr>";
+                    $cont=1;
+                    while ($campo2=mysqli_fetch_object($result2)) 
+                   { 
+                        echo "<tr><td>$cont</td><td>$campo2->equipo</td></tr>";
+                        $cont++;
+                    }
+
+                    echo "</tbody></table>";
+            echo "</td>";
+            
+            echo "<td>";
+                    echo "<table><thead><tr><td colspan=2 >Insumos</td></thead></tr>";
+                    echo "<tr><tbody><td>Numero</td><td>Inusmo</td></tr>";
+                    $cont1=1;
+                    while ($campo3=mysqli_fetch_object($result3)) 
+                   { 
+                        echo "<tr><td>$cont1</td><td>$campo3->insumo</td></tr>";
+                        $cont1++;
+                    }
+                    echo "</tbody></table>";
+            echo "</td>";
+            echo "<td >";
+                     echo "<table><thead><tr><td colspan=2 >Condiciones de devolucion</td></thead></tr>";
+                     echo "<tr><tbody><td colspan =2 ></td></tr>";
+                     echo "<tr><td rowspan=$row ><textarea required id=area3 name=conddevol placeholder= Condiciones&nbsp;de&nbsp;devolucion></textarea > </td></tr>";
+                    
+            echo "</td>";
+             echo "</tbody></table>";
+            echo "</tr>";
+            
+            
+             echo "</tbody></table></td></tr>";
+            echo "<tr><td colspan=6 ><table><thead><tr><td colspan=4>Observaciones</td></tr></thead>";
+            echo "<tbody><tr><td colspan=6></td></tr>";
+            echo "<tr><td colspan=3 > Observaciones del Coordinador <textarea id=area2 name=obsercor placeholder= Observaciones&nbsp;del&nbsp;cordinador&nbsp;de&nbsp;laboratorio>$campo->obscordinador</textarea > </td><td colspan=3 >Observaciones del Investigador  <textarea id=area2 name=obserinves placeholder= Observaciones&nbsp;del&nbsp;investigador >$campo->obinvestigador</textarea></td> </tr>";
+            echo "</tbody></table></td></tr>";
+           }
+                
+            echo "</tbody>";
+            echo "</table> \n";           
+               echo "</div>";
+            echo "<div>";
+            echo "<input type=hidden name=req value=terminai >";
+            echo "<input type=hidden name=id value=$id >";
+            echo "<input type=submit value=Finalizar class=btn-style>";
+            echo "</form>";
+            echo "</div>";
+      $mysqli->close(); 
+
+    
+}
+
+
+static function finin($id,$obsercor,$obserinves,$conddevol)
+{
+      include 'db_connect.php';
+    
+    if(!empty($obsercor) && !empty($obserinves))
+    {
+         if ($insert_stmt = $mysqli->prepare("UPDATE investigaciones SET obinvestigador=?, obscordinador=? ,horafin=?,estado=?,condevol=? WHERE idinvestigacion = ?;")) 
+         {
+                 date_default_timezone_set("America/Bogota");
+                $est ="fn";
+                $hora = date("H:i:s");
+                $fecha = date("Y-m-d");
+                $insert_stmt->bind_param('ssssss', $obserinves,$obsercor,$hora,$est,$conddevol,$id);
+                // Ejecuta la consulta preparada.
+                if (! $insert_stmt->execute())
+                {
+                    header('Location: ../vistas/error.php?err=Registration failure: UPDTAE');
+                }
+                else
+                {
+                    $msj="<div id=dialog-message title=Fin Dia> <p>Investigacion finalizada a las $hora correctamente </p></div>";
+                   header('Location: ..//vistas/formularios/investigacion/fininvestig.php?msj='.$msj); 
+                }
+
+        }
+    }
+    else if(!empty($obsercor) && empty($obserinves))
+    {
+         if ($insert_stmt = $mysqli->prepare("UPDATE investigaciones SET obscordinador=? ,horafin=?,estado=?,condevol=? WHERE idinvestigacion = ?;")) 
+         {
+                 date_default_timezone_set("America/Bogota");
+                $est ="fn";
+                $hora = date("H:i:s");
+                $fecha = date("Y-m-d");
+                $insert_stmt->bind_param('sssss', $obsercor,$hora,$est,$conddevol,$id);
+                // Ejecuta la consulta preparada.
+                if (! $insert_stmt->execute())
+                {
+                    header('Location: ../vistas/error.php?err=Registration failure: UPDTAE');
+                }
+                else
+                {
+                    $msj="<div id=dialog-message title=Fin Dia> <p>Investigacion finalizada a las $hora correctamente </p></div>";
+                   header('Location: ..//vistas/formularios/investigacion/fininvestig.php?msj='.$msj); 
+                }
+
+        }
+    }
+    else if(empty($obsercor) && !empty($obserinves))
+    {
+         if ($insert_stmt = $mysqli->prepare("UPDATE investigaciones SET obinvestigador=? ,horafin=?,estado=?,condevol=? WHERE idinvestigacion = ?;")) 
+         {
+                 date_default_timezone_set("America/Bogota");
+                $est ="fn";
+                $hora = date("H:i:s");
+                $fecha = date("Y-m-d");
+                $insert_stmt->bind_param('sssss', $obserinves,$hora,$est,$conddevol,$id);
+                // Ejecuta la consulta preparada.
+                if (! $insert_stmt->execute())
+                {
+                    header('Location: ../vistas/error.php?err=Registration failure: UPDTAE');
+                }
+                else
+                {
+                    $msj="<div id=dialog-message title=Fin Dia> <p>Investigacion finalizada a las $hora correctamente </p></div>";
+                   header('Location: ..//vistas/formularios/investigacion/fininvestig.php?msj='.$msj); 
+                }
+
+        }
+    }
+     else if(empty($obsercor) && empty($obserinves))
+    {
+         if ($insert_stmt = $mysqli->prepare("UPDATE investigaciones SET horafin=?,estado=?,condevol=? WHERE idinvestigacion = ?;")) 
+         {
+                 date_default_timezone_set("America/Bogota");
+                $est ="fn";
+                $hora = date("H:i:s");
+                $fecha = date("Y-m-d");
+                $insert_stmt->bind_param('ssss', $hora,$est,$conddevol,$id);
+                // Ejecuta la consulta preparada.
+                if (! $insert_stmt->execute())
+                {
+                    header('Location: ../vistas/error.php?err=Registration failure: UPDTAE');
+                }
+                else
+                {
+                    $msj="<div id=dialog-message title=Fin Dia> <p>Investigacion finalizada a las $hora correctamente </p></div>";
+                   header('Location: ..//vistas/formularios/investigacion/fininvestig.php?msj='.$msj); 
+                }
+
+        }
+    }
+    else
+    {
+        $msj="<div id=dialog-message title=Error> <p>Ocurrio un error al finalizar la investigacion intente de nuevo</p></div>";
+        header('Location: ..//vistas/formularios/investigacion/fininvestig.php?msj='.$msj); 
+    }
+    
+}
+}
+
+//        $msj="<div id=dialog-message title=Fin Dia> <p>acaba de marcar su salida</p></div>";  
+
+//<td colspan=2 rowspan=$num >Insumos <textarea id=area2 name=conddevol placeholder= Condiciones&nbsp;de&nbsp;devolucion></textarea > </td>

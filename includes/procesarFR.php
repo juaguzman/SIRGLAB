@@ -23,25 +23,36 @@ if(isset($_REQUEST['req']))
        header('Location: ../vistas/formularios/practicas/verpract.php?id='.$id);
      }
     break;
-    case "fin":
-         if(isset($_REQUEST['id']))
+     case "fini":
+     if(isset($_REQUEST['id']))
      {
        $id = $_REQUEST['id'];
+       
+       header('Location: ../vistas/formularios/investigacion/finInvestigyobservbs.php?id='.$id);
+     }
+    break;
+    case "terminap":
+        if(isset($_POST['id'],$_POST['obsercor'],$_POST['obserdos']))
+        {
+            $id=$_POST['id'];
+            $obsercor=$_POST['obsercor'];
+            $obserdos=$_POST['obserdos'];
+            
+            formularios::finpr($id, $obsercor, $obserdos);
+        }
+    break;
+    case "terminai":
+         if(isset($_POST['id'],$_POST['conddevol'],$_POST['obsercor'],$_POST['obserinves']))
+        {
+            $id=$_POST['id'];
+            $obsercor=$_POST['obsercor'];
+            $conddevol=$_POST['conddevol'];
+            $obserinves = $_POST['obserinves'];
+            
+            formularios::finin($id,$obsercor,$obserinves,$conddevol);
+        }
     
-     }
-     else
-     {
-         
-     }
-     if(isset($_REQUEST['obsercor']))
-     {
-       $obsercor = $_REQUEST['obsercor'];
-     } 
-     if(isset($_REQUEST['obserdos']))
-     {
-         $obserdos = $_REQUEST['obserdos'];
-     }
-     formularios::finpr($id,$obsercor,$obserdos);
+    
      
     break;
     case "asign":
