@@ -717,6 +717,62 @@ static function finin($id,$obsercor,$obserinves,$conddevol)
     }
     
 }
+
+
+/*
+ * lista todas la Investigaciones de un cordinador 
+ */
+static function ListatodInvestigCord($idlab)
+{
+    $horas = "0:00:00";    
+     include 'db_connect.php';
+        $consulta= "SELECT investigaciones.* , laboratorios.nombre as 'labo', monitores.nombres as 'monit'  FROM investigaciones,laboratorios, monitores WHERE investigaciones.laboratorios_idlaboratorios = laboratorios.idlaboratorios AND investigaciones.monitores_cedula = monitores.cedula AND investigaciones.laboratoristas_members_id = $idlab ORDER BY laboratorios.nombre desc, investigaciones.numficha;";
+        $result   = $mysqli->query($consulta);
+        $sumHoras="0:00:00";
+        $sumh="";
+        $summ="";
+        $sums="";
+        echo "<table> \n";
+        echo "<thead><tr><td colspan=12>Listado de practicas</td></tr></thead>";
+        echo "<tr><td>&nbsp;NUM PRACTICA&nbsp;</td><td>&nbsp;LABORATORIO&nbsp;</td><td>&nbsp;MONITOR&nbsp;</td><td >&nbsp;PROGRAMA&nbsp;</td><td >&nbsp;MATERIA&nbsp;</td><td >&nbsp;PRACTICA&nbsp;</td><td >&nbsp;DOCENTE&nbsp;</td><td >&nbsp;FECHA&nbsp;</td><td >&nbsp;HORA INI&nbsp;</td><td >&nbsp;HORA FIN&nbsp;</td><td >&nbsp;TOTAL HORAS&nbsp;</td><td >&nbsp;OPCIONES&nbsp;</td></tr> \n";
+        while ($campo=mysqli_fetch_object($result)) 
+                {     
+                   $hini = $campo->horaini;
+                   $hfin=$campo->horafin;
+                   if(empty($hfin))
+                   {
+                       $horas="Sin Finalizar";
+                   }
+                   else
+                   {
+                   $horas=date("H:i:s", strtotime("00:00:00") + strtotime($hfin) - strtotime($hini) );
+                   $horaSplit = explode(":", $horas);
+                   list($hour1, $min1, $sec1)=$horaSplit;
+                   
+                  $sums = $sums+$sec1; 
+                    if($sums>59)
+                   {
+                       $summ++;
+                       $sums=$sums-60;
+                   }       
+                    $summ = $summ+$min1;
+                   if($summ>59)
+                   {
+                       $sumh++;
+                       $summ=$summ-60;
+                   }      
+                   $sumh = $sumh+$hour1;
+                   
+                   }
+                 echo "<tr><td>$campo->numficha</td><td>$campo->labo</td><td>$campo->monit</td><td>$campo->nombre_investg</td><td>$campo->investigador</td><td>$campo->cedulainvestg</td><td>$campo->asesor</td><td>$campo->fecha</td><td>$campo->horaini</td><td>$campo->horafin</td><td>$horas</td><td><a href=../../../includes/procesarFR.php?id=$campo->idinvestigacion&req=verin /><img src=../../../imagenes/iconos/ver.png width=30px heigt=30px ></a></td>";
+                }
+                $sumHoras = "$sumh:$summ:$sums";
+                echo "<tr><td colspan=10 >Total de Horas</td><td>$sumHoras</td><td>Generar Reporte </td> </tr>";
+        echo "</table> \n";
+      $mysqli->close();              
+            
+    
+}
 }
 
 //        $msj="<div id=dialog-message title=Fin Dia> <p>acaba de marcar su salida</p></div>";  

@@ -31,6 +31,7 @@ else
                 <ul>
                     <li><a href="../formularios/investigacion/agregarinvstigacion.php">Agregar Investigacion</a></li>
                     <li><a href="../formularios/investigacion/fininvestig.php">Fin Investigacion</a></li>
+                    <li><a href="../formularios/investigacion/listarInvestigaCord.php">Ver Investigaciones</a></li>
                 </ul>
             </li>
             <li class="active" ><a>Monitores</a>

@@ -26,13 +26,15 @@ else
                  <ul>
                    <li><a href="formularios/practicas/agregarpractica.php">Agregar Practica</a></li>
                    <li><a href="formularios/practicas/finpractica.php">Finalizar Practica</a></li>
-                   <li><a href="formularios/practicas/verpract.php">Ver Practicas</a></li>
+                   <li><a href="formularios/practicas/listarpracticascord.php">Ver Practicas</a></li>
                  </ul>
             </li>
             <li><a href="#">Investigacion</a>
                 <ul>
                     <li><a href="formularios/investigacion/agregarinvstigacion.php">Agregar Investigacion</a></li>
                     <li><a href="formularios/investigacion/fininvestig.php">Fin Investigacion</a></li>
+                    <li><a href="formularios/investigacion/listarInvestigaCord.php">Ver Investigaciones</a></li>
+                   
                 </ul>
             </li>
             <li><a href="#">Monitores</a>
