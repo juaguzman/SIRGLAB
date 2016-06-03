@@ -11,11 +11,13 @@ sec_session_start();
     <head>
         <meta charset="UTF-8">
         <title>Agregar monitores</title>
+        <script type="text/JavaScript" src="../../js/sha512.js"></script> 
+        <script type="text/JavaScript" src="../../js/forms.js"></script>
         <link rel="stylesheet" href="../../styles/main.css" />
         <link rel="stylesheet" href="../../styles/monitores_1.css" />
         <link rel="stylesheet" href="../../styles/menu.css" />
    
- 
+   
     </head>
     
     <body>
@@ -42,9 +44,12 @@ sec_session_start();
                 <input class="form-field" type="text" name="programa" value="<?php if (!empty($prog)) { echo $prog;} ?>" required /><br />
                 <div class="form-title">semestre</div>
                 <input class="form-field" type="number" name="semestre" max="9" value="<?php if (!empty($semes)) { echo $semes;} ?>" required /><br />
+                <div class="form-title">Contraseña Cordinador  <?php if (!empty($error_msg_psw)) { echo $error_msg_psw;} ?></div>
+                <input class="form-field" type="password" name="password"  value="" required /><br />
                 <div class="submit-container">
-                    <input type="hidden" name="rsp" value="agregar" />
-                    <input class="submit-button" type="submit" value="Agregar"/>
+                    <input type="hidden" name="idc" value="<?php echo $_SESSION['user_id'];?>" />
+                    <input class="submit-button" type="submit" value="Agregar" onclick="formhash(this.form, this.form.password);"/>
+                    
                 </div>
                 </form>
        </div>

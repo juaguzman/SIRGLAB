@@ -14,6 +14,7 @@ sec_session_start();
         <link rel="stylesheet" href="../../styles/menu.css" />
         <link rel="stylesheet" href="../../styles/tabla.css" />
         <link rel="stylesheet" href="../../styles/monitores_1.css" />
+        <link rel="stylesheet" href="../../styles/registro.css" />
            <link rel="stylesheet" href="../../styles/jquery-ui.css" />
             <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
             <script src="/resources/demos/external/jquery.bgiframe-2.1.2.js"></script>
@@ -46,6 +47,7 @@ sec_session_start();
            }?>
            <div id=dialog title=Asignar Monitor style=display:none;><p>Desea agregar el monitor sus monitores.</p></div>
               <div class="CSSTableGenerator">
+                 
            <?php 
               if(isset($_REQUEST['cedu']))
               {
@@ -53,6 +55,7 @@ sec_session_start();
                    monitores::ListarMonitorRegistro($idm); 
               }
              ?>
+              
               </div>
         <?php else : ?>
             <p>

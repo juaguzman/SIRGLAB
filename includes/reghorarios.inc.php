@@ -10,11 +10,12 @@ if(isset($_POST['elun'],$_POST['slun'],$_POST['idm'], $_POST['emar'],$_POST['sma
     /*
      * prueba del lunes y lo agrega de lo contraro devuelve un error
      */
+     $idm  = $_POST['idm'];
     if(!empty($_POST['elun']) && !empty($_POST['slun']))
     {
        $elun = $_POST['elun'];
        $slun = $_POST['slun'];
-       $idm  = $_POST['idm'];
+      
 
        if($elun>$slun)
        {
@@ -193,7 +194,7 @@ if(isset($_POST['elun'],$_POST['slun'],$_POST['idm'], $_POST['emar'],$_POST['sma
        }
        
        $mensaje="<div id=dialog-message title=horario> <p>Horario agregado con exito</p></div>";
-       header('Location: /vistas/monitores/listarmonitores.php?msj='.$mensaje);
+       header('Location: listarmonitores.php?msj='.$mensaje);
     
 }
 

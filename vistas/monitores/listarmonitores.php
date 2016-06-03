@@ -14,6 +14,7 @@ sec_session_start();
         <link rel="stylesheet" href="../../styles/menu.css" />
         <link rel="stylesheet" href="../../styles/tabla.css" />
         <link rel="stylesheet" href="../../styles/monitores_1.css" />
+        <link rel="stylesheet" href="../../styles/registro.css" />
            <link rel="stylesheet" href="../../styles/jquery-ui.css" />
             <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
             <script src="/resources/demos/external/jquery.bgiframe-2.1.2.js"></script>

@@ -110,11 +110,11 @@ sec_session_start();
                                     <tr>
                                         <td>                      
                                 <div class="form-title">Entrada</div>
-                                <input class="form-field" type="time" value="<?php if (!empty($evie)) { echo $evie;} ?>" name="ejue" maxlength="10" />
+                                <input class="form-field" type="time" value="<?php if (!empty($evie)) { echo $evie;} ?>" name="evie" maxlength="10" />
                                        </td>
                                         <td>
                                 <div class="form-title">Salida </div>  
-                                <input class="form-field" type="time" value="<?php if (!empty($svie)) { echo $svie;} ?>" name="sjue" maxlength="10"/>
+                                <input class="form-field" type="time" value="<?php if (!empty($svie)) { echo $svie;} ?>" name="svie" maxlength="10"/>
                                         </td>
                                  </tr>
                    <tr>

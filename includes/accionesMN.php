@@ -75,7 +75,11 @@ static function ListarMonitores()
             echo "<tr><td>$campo->cedula</td><td>$campo->nombres</td><td>$campo->apellidos</td><td>$campo->celular</td><td>$campo->email</td><td>$campo->programa</td><td>$campo->semestre</td><td>$estado</td><td><a href=verHorarios.php?cedu=$campo->cedula><img src=../../imagenes/iconos/horario.png width=30px heigt=30px ></a>&nbsp;&nbsp;&nbsp;"
                     . "<a href=registromonitores.php?cedu=$campo->cedula><img src=../../imagenes/iconos/ver.png width=30px heigt=30px ></a></td>";
                 }
-        echo "<tbody>";
+                echo "<form method=post action=../reportes/prueb2.php>";
+                echo "<input type=hidden name=id value=$id />";
+                echo "<tr><td colspan=9><button type=submit class=btn>Generar Reporte</button></td></tr>";
+                echo "</form>";
+        echo "</tbody>";
         echo "</table> \n";
       $mysqli->close();        
             
@@ -390,9 +394,7 @@ static function verHorarios($cedu)
         $ress="";
         
    $prep_stmt = "SELECT * FROM monitores WHERE cedula = ? LIMIT 1";
-    $stmt = $mysqli->prepare($prep_stmt);
-    
-   
+    $stmt = $mysqli->prepare($prep_stmt);   
     if ($stmt) 
         {
         $stmt->bind_param('s', $idm);
@@ -485,9 +487,12 @@ static function verHorarios($cedu)
                     $sumh = $sumh+$hour1;
                    }
                    echo "<tr> <td>$campo->fecha</td><td>$campo->horaen</td><td>$hfin</td><td>$horasp</td> </tr>";
+                   echo "<input type=hidden name=hrs[] value=$campo->horaen />";
                  }
                  $sumHoras = "$sumh:$summ:$sums";
                  echo "<tr><td colspan=3 >Total de Horas</td><td>$sumHoras Horas</td></tr>";
+       
+                 echo "</table>";
             
             }
         

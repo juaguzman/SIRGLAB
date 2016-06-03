@@ -140,11 +140,11 @@ sec_session_start();
                 <tr>
                     <td>
                  <div class="form-title">Hora inicio</div>
-                <input class="form-field" type="time" name="hinicio" value="<?php if (!empty($hinicio)) { echo $hinicio;} ?>" required />
+                 <input class="form-field" type="time" name="hinicio" placeholder="Hora Inicio" value="<?php if (!empty($hinicio)) { echo $hinicio;} ?>" required />
                     </td>
                     <td>
                  <div class="form-title">Hora fin</div>
-                <input class="form-field" type="time" name="hfin" value="<?php if (!empty($hfin)) { echo $hfin;} ?>" required /><br />
+                 <input class="form-field" type="time" name="hfin" placeholder="Hora Fin" value="<?php if (!empty($hfin)) { echo $hfin;} ?>" required /><br />
                     </td>
                 </tr>
                 <tr>

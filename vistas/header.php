@@ -41,7 +41,6 @@ else
                 <ul>
                     <li><a href="monitores/nuevodia.php">Registrar Dia</a></li>
                     <li><a href="monitores/listarmonitores.php">Ver monitores</a></li>
-                    <li><a href="monitores/asignarmonitores.php">Asignar Monitores</a></li>
                 </ul>
             </li>
             <li><a href="#">Empleados</a>
@@ -55,8 +54,7 @@ else
                <ul>
                      <?php if($_SESSION['rol']=='admin') {?>
                     <li> <a href="admin/register2.php">Agregar Laboratorista</a> </li> <?php } ?>
-                     <?php if($_SESSION['rol']=='admin' or $_SESSION['rol']=='usua' ) {?>
-                    <li><a href="admin/agregarMonit.php">Agregar Monitores</a></li> <?php } ?>
+                    <li><a href="admin/agregarMonit.php">Agregar Monitores</a></li> 
                     <?php if($_SESSION['rol']=='admin') {?>
                     <li> <a href="admin/agregarprogramas.php">Agregar Programa</a> </li> <?php } ?>
                      <?php if($_SESSION['rol']=='admin') {?>
