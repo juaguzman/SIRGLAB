@@ -34,7 +34,7 @@ if(isset($_POST['idcord'],$_POST['idmon'], $_POST['labor'], $_POST['ninvestiga']
             $stmt->execute();
             $stmt->store_result();
 
-            if (!$stmt->num_rows == 1) 
+            if ($stmt->num_rows >= 1) 
                 {
                  // no selecciono un monitor
                 $error_msg_mnt = '<p class="error">Seleccione un monitor</p>';               

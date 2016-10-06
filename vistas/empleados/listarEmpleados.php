@@ -23,8 +23,8 @@ sec_session_start();
         <?php include './header.php';?>
             <div class="CSSTableGenerator">
            <?php 
-              
-                empleados::ListarEmpleados()?>
+              $id = $_SESSION['user_id'];
+                empleados::ListarEmpleados($id)?>
             </div>    
         <?php else : ?>
             <p>
